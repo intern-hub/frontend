@@ -1,14 +1,13 @@
 
-.h {
+.header {
     height: 3rem;
     background-color: black;
 
     display: grid;
     grid-template-columns: min-content 1fr min-content;
-    column-gap: 1rem
-}
+    column-gap: 1rem}
 
-.h__co {
+.header__company {
     display: flex;
     align-self: center;
     justify-self: left;
@@ -17,17 +16,17 @@
     font-family: Helvetica, sans-serif;
 }
 
-.h__p {
+.header__profile {
     display: flex;
     align-self: center;
     justify-self: left;
 }
 
-.i__l {
+.icon__logo {
     height: 3rem;
 }
 
-.i__p {
+.icon__person {
     fill: white;
     height: 2.5rem;
     width: 2.5rem;

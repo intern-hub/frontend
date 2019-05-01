@@ -8,15 +8,15 @@ export class Header extends React.PureComponent {
 
     render() {
         return (
-            <div className="h">
-                <div className="h__t">
-                    <img src={logo} alt="Logo" className="i__l"/>
+            <div className="header">
+                <div className="header__title">
+                    <img src={logo} alt="Logo" className="icon__logo"/>
                 </div>
-                <div className="h__co">
+                <div className="header__company">
                     Companies
                 </div>
-                <div className="h__p">
-                    <Person className="i__p"/>
+                <div className="header__profile">
+                    <Person className="icon__person"/>
                 </div>
             </div>
         )

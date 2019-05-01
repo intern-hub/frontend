@@ -1,10 +1,18 @@
 
-.b {
+.body {
     margin: 2rem 3rem;
 }
 
-.b__t {
+.body__title {
     font-family: Helvetica, sans-serif;
     font-size: 2rem;
     margin: 1rem 0;
+}
+
+.search {
+    margin-bottom: 1rem;
+}
+
+.company-list {
+    margin-top: 1rem;
 }

@@ -1,0 +1,30 @@
+
+.company-wrapper {
+    background-color: #eeeeee;
+
+    display: grid;
+    grid-template-columns: min-content min-content 1fr;
+
+    margin-top: .5rem;
+}
+
+.company-name {
+    margin-left: 1rem;
+    font-family: Helvetica, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+
+    display: flex;
+    align-self: center;
+    justify-self: left;
+}
+
+.apply-link {
+    font-family: Helvetica, sans-serif;
+    font-size: 24px;
+    margin: 0 1rem;
+
+    display: flex;
+    align-self: center;
+    justify-self: right;
+}
