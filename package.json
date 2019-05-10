@@ -1,9 +1,11 @@
 {
   "name": "frontend",
   "version": "0.1.0",
+  "homepage": "https://intern-hub.github.io/frontend/",
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",
+    "gh-pages": "^2.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-autosuggest": "^9.4.3",
@@ -15,6 +17,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build", 
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
