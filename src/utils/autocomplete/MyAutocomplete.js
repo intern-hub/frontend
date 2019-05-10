@@ -12,7 +12,6 @@ export class MyAutocomplete extends Component {
             suggestions: this.props.suggestions
         }
     }
-
     componentDidUpdate(prevProps) {
         if(prevProps.suggestions !== this.props.suggestions){
             this.setState({suggestions: this.getSuggestions(this.state.value)});
@@ -45,7 +44,7 @@ export class MyAutocomplete extends Component {
             console.warn(`Value ${newValue} is not a string in autocomplete`);
             return;
         }
-        this.setState({value: newValue.toUpperCase()});
+        this.setState({value: newValue});
     };
 
     // Autosuggest will call this function every time you need to update suggestions.

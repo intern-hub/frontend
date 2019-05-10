@@ -9,7 +9,7 @@ export class Search extends React.PureComponent {
     render() {
         return (
             <div className="s">
-                <MyAutocomplete tabIndex={0} suggestions={["test", "hello"]} value={"test"}/>
+                <MyAutocomplete tabIndex={0} suggestions={["test", "hello"]} defaultValue={"Stripe"}/>
                 <SearchIcon className="s__i"/>
             </div>
         )

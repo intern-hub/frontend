@@ -2,10 +2,12 @@
 
 .s {
     display: grid;
-    grid-template-columns: 1fr 10%;
+    grid-template-columns: 1fr min-content;
 }
 
 .s__i {
-    height: 100%;
-    width: 100%;
+    margin: 0 1rem;
+    display: flex;
+    align-self: center;
+    justify-self: center;
 }
