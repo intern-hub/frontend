@@ -10,7 +10,6 @@ export class Body extends React.PureComponent {
 
     render() {
         const internshipCards = this.props.internships.map((internship) => <InternshipCard name={internship}/>);
-
         return (
             <div className="body">
                 <div className="body__title"> INTERNSHIPS</div>

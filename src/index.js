@@ -11,7 +11,7 @@ import {CompanyPage} from "./pages/company/CompanyPage";
 
 ReactDOM.render(
     <React.Fragment>
-        <BrowserRouter>
+        <BrowserRouter basename={"/frontend"}>
             <Route exact path="/" component={LandingPage} />
             <Route path="/company/:name" render={(props) =>  <CompanyPage name={props.match.params.name}/> } />
 
