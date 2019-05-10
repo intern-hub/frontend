@@ -1,0 +1,32 @@
+
+.is-wrapper {
+    background-color: #FFFFFF;
+
+    display: grid;
+    border-radius: .5rem;
+
+    box-shadow: -2px 2px 2px 0px rgba(0, 0, 0, .15);
+    margin-top: .7rem;
+    height: 50px;
+}
+
+.is-name {
+    margin-left: 1rem;
+    font-family: Helvetica, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+
+    display: flex;
+    align-self: center;
+    justify-self: left;
+}
+
+.apply-link {
+    font-family: Helvetica, sans-serif;
+    font-size: 24px;
+    margin: 0 1rem;
+
+    display: flex;
+    align-self: center;
+    justify-self: right;
+}

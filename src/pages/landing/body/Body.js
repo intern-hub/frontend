@@ -14,11 +14,11 @@ export class Body extends React.Component {
     }
 
     render() {
-        const companyList = this.state.companies.map(company => <CompanyCard name={company}/>);
+        const companyList = this.state.companies.map(company => <CompanyCard key={company} name={company}/>);
 
         return (
             <div className="body">
-                <div className="body__title"> Current Internships</div>
+                <div className="body__title"> COMPANIES </div>
                 <div className="search">
                     <Search/>
                 </div>

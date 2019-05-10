@@ -4,7 +4,8 @@
 }
 
 .body__title {
-    font-family: Helvetica, sans-serif;
+    font-family: Roboto, sans-serif;
+    font-weight: 900;
     font-size: 2rem;
     margin: 1rem 0;
 }

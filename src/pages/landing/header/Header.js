@@ -1,8 +1,8 @@
 import React from 'react';
 
 import "./Header.css";
-import logo from "../../img/logo.png";
-import {ReactComponent as Person} from "../../img/user.svg";
+import logo from "../../../img/logo.png";
+import {Button} from "../../../utils/button/Button";
 
 export class Header extends React.PureComponent {
 
@@ -12,11 +12,9 @@ export class Header extends React.PureComponent {
                 <div className="header__title">
                     <img src={logo} alt="Logo" className="icon__logo"/>
                 </div>
-                <div className="header__company">
-                    Companies
-                </div>
-                <div className="header__profile">
-                    <Person className="icon__person"/>
+                <div className="header__btns">
+                    <Button  className="header__register" label={"TEXT"}/>
+                    <Button  className="header__sign-in" label={"TEXT"}/>
                 </div>
             </div>
         )

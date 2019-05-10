@@ -1,11 +1,13 @@
 
 .company-wrapper {
-    background-color: #eeeeee;
+    background-color: #FFFFFF;
 
     display: grid;
-    grid-template-columns: min-content min-content 1fr;
+    border-radius: .5rem;
 
-    margin-top: .5rem;
+    box-shadow: -2px 2px 2px 0px rgba(0, 0, 0, .15);
+    margin-top: .7rem;
+    height: 50px;
 }
 
 .company-name {

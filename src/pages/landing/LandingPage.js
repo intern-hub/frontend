@@ -2,7 +2,7 @@ import React from 'react';
 import {Header} from "./header/Header";
 import {Body} from "./body/Body";
 
-export class Landing extends React.PureComponent {
+export class LandingPage extends React.PureComponent {
 
 
     render() {

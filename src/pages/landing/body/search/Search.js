@@ -1,6 +1,6 @@
 import React from 'react';
-import {MyAutocomplete} from "../../../utils/autocomplete/MyAutocomplete";
-import {ReactComponent as SearchIcon} from "../../../img/search.svg"
+import {MyAutocomplete} from "../../../../utils/autocomplete/MyAutocomplete";
+import {ReactComponent as SearchIcon} from "../../../../img/search.svg"
 
 import "./Search.css";
 
