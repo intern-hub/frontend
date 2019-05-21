@@ -8,12 +8,14 @@ import {LandingPage} from "./pages/landing/LandingPage";
 import {BrowserRouter} from "react-router-dom";
 import {Route} from "react-router";
 import {CompanyPage} from "./pages/company/CompanyPage";
+import {LoginPage} from "./pages/login/LoginPage";
 
 ReactDOM.render(
     <React.Fragment>
         <BrowserRouter basename={"/frontend"}>
             <Route exact path="/" component={LandingPage} />
             <Route path="/company/:name" render={(props) =>  <CompanyPage name={props.match.params.name}/> } />
+            <Route exact path="/login" render={(props) =>  <LoginPage /> } />
 
         </BrowserRouter>
     </React.Fragment>

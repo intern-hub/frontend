@@ -13,7 +13,7 @@ export const Button = (props) => {
     );
 
     return (
-        <button disabled={props.disabled} id={props.id} className={names}
+        <button style={props.style} disabled={props.disabled} id={props.id} className={names}
                 onMouseEnter={props.onMouseEnter}
                 onMouseLeave={props.onMouseLeave}
                 onClick={props.onClick}>
