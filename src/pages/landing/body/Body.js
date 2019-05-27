@@ -16,7 +16,7 @@ export class Body extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://internhub.us.to/api/companies")
+        fetch("https://internhub.us.to/api/companies")
             .then((response) => {
                 return response.json();
             })

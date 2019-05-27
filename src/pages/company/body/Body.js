@@ -11,7 +11,7 @@ export class Body extends React.PureComponent {
     }
 
     componentDidMount() {
-        fetch(`http://internhub.us.to/api/positions?coname=${this.props.name}`)
+        fetch(`https://internhub.us.to/api/positions?coname=${this.props.name}`)
             .then((response) => {
                 return response.json();
             })
