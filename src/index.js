@@ -5,7 +5,7 @@ import "./index.css";
 
 import * as serviceWorker from './serviceWorker';
 import {LandingPage} from "./pages/landing/LandingPage";
-import {BrowserRouter} from "react-router-dom";
+import {HashRouter} from "react-router-dom";
 import {Route} from "react-router";
 import {CompanyPage} from "./pages/company/CompanyPage";
 import {LoginPage} from "./pages/login/LoginPage";
@@ -13,13 +13,13 @@ import {RegisterPage} from "./pages/register/RegisterPage";
 
 ReactDOM.render(
     <React.Fragment>
-        <BrowserRouter basename={"/frontend"}>
+        <HashRouter basename={"/frontend"}>
             <Route exact path="/" component={LandingPage} />
             <Route path="/company/:name" render={(props) =>  <CompanyPage name={props.match.params.name}/> } />
             <Route exact path="/login" render={(props) =>  <LoginPage /> } />
             <Route exact path="/register" render={(props) =>  <RegisterPage /> } />
 
-        </BrowserRouter>
+        </HashRouter>
     </React.Fragment>
     , document.getElementById('root'));
 
