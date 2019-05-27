@@ -2,7 +2,7 @@ import React from 'react';
 
 import "./CompanyCard.css";
 import PropTypes from 'prop-types';
-import LinkWrapper from "../../../../utils/button/LinkButton";
+import LinkWrapper from "../../../../utils/button/LinkWrapper";
 
 export class CompanyCard extends React.PureComponent {
 

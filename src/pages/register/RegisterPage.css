@@ -1,5 +1,5 @@
 
-.login-page {
+.register-page {
     background-color: #F3F3F3;
     height: 100%;
 
@@ -8,26 +8,26 @@
     justify-content: center;
 }
 
-.login-header {
+.register-header {
     font-size: 2rem;
     font-weight: 100;
     text-align: center;
     color: #434243;
 }
 
-.login-header-text {
+.register-header-text {
     margin-bottom: .5rem;
 }
 
-.login-logo {
+.register-logo {
     text-align: center;
 }
 
-.login-container {
+.register-container {
     font-family: Helvetica, sans-serif;
 }
 
-.login-input-container {
+.register-input-container {
     display: flex;
     flex-direction: column;
     -webkit-border-radius: 10px;
@@ -42,27 +42,24 @@
     padding: 1rem;
 }
 
-.login-button-container {
+.register-button-container {
     text-align: center;
     width: 100%;
 }
 
-.login-button {
+.register-button {
     background-color: #60bCC2;
     color: white;
     width: 75%;
 }
 
-.login-input {
+.register-input {
     border-radius: 8px;
     border: 1px solid #4D9697;
     height: 1.3rem;
 }
 
-.login-username {
+.register-email, .register-username, .register-password {
     margin-bottom: 1rem;
 }
 
-.login-password {
-    margin-bottom: 1rem;
-}
