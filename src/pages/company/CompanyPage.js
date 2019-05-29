@@ -1,5 +1,5 @@
 import React from 'react';
-import {Header} from "../landing/header/Header";
+import Header from "../landing/header/Header";
 import {Body} from "./body/Body";
 
 export class CompanyPage extends React.PureComponent {

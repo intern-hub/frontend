@@ -3,8 +3,27 @@ import React from 'react';
 import "./RegisterPage.css";
 import {Button} from "../../utils/button/Button";
 import InternHubLogo from "../../utils/logo/InternHubLogo";
+import SimpleReactValidator from 'simple-react-validator';
+import {bindActionCreators} from "redux";
+import {connect} from "react-redux";
 
-export class RegisterPage extends React.PureComponent {
+import {toast} from "react-toastify";
+import PropTypes from 'prop-types';
+import {registerUser, setRegisterFail} from "../../actions/Auth";
+import {withRouter} from "react-router";
+
+class RegisterPage extends React.PureComponent {
+    componentWillUpdate(nextProps, nextState, nextContext) {
+        if (nextProps.registerFail && !this.props.registerFail) {
+            toast.error(nextProps.registerMessage);
+            this.props.setRegisterFail(false);
+        }
+    }
+
+    handleSubmit({email, username, password}) {
+        this.props.register(email, username, password, this.props.history);
+    }
+
     render() {
         return (
             <div className="register-page">
@@ -17,7 +36,7 @@ export class RegisterPage extends React.PureComponent {
                             <InternHubLogo black={true}/>
                         </div>
                     </div>
-                    <RegisterInput/>
+                    <RegisterInput handleSubmit={this.handleSubmit.bind(this)}/>
                 </div>
             </div>
         );
@@ -27,28 +46,89 @@ export class RegisterPage extends React.PureComponent {
 
 class RegisterInput extends React.PureComponent {
 
+    constructor(props) {
+        super(props);
+        this.validator = new SimpleReactValidator();
+        this.state = {
+            email: '',
+            username: '',
+            password: ''
+        }
+    }
+
+    handleEmailChange(evt) {
+        this.setState({email: evt.target.value});
+    }
+
+    handleUserNameChange(evt) {
+        this.setState({username: evt.target.value});
+    }
+
+    handlePasswordChange(evt) {
+        this.setState({password: evt.target.value});
+    }
+
+    handleSubmit() {
+        if (this.validator.allValid()) {
+            this.props.handleSubmit(this.state);
+        } else {
+            this.validator.showMessages();
+            this.forceUpdate();
+        }
+    }
+
     render() {
         return (
-            <div className="register-input-container">
-                <div className="register-email">
-                    <div>Email</div>
-                    <input className="register-input"/>
-                </div>
+            <form onSubmit={this.handleSubmit.bind(this)}>
+                <div className="register-input-container">
+                    <div className="register-email">
+                        <div>Email</div>
+                        <input value={this.state.email} className="register-input"
+                               onChange={this.handleEmailChange.bind(this)}/>
+                        {this.validator.message('email', this.state.email, 'required|email')}
+                    </div>
 
-                <div className="register-username">
-                    <div>Username</div>
-                    <input className="register-input"/>
-                </div>
+                    <div className="register-username">
+                        <div>Username</div>
+                        <input value={this.state.username} className="register-input"
+                               onChange={this.handleUserNameChange.bind(this)}/>
+                        {this.validator.message('username', this.state.username, 'required|alpha_num')}
+                    </div>
 
-                <div className="register-password">
-                    <div>Password</div>
-                    <input className="register-input"/>
-                </div>
+                    <div className="register-password">
+                        <div>Password</div>
+                        <input value={this.state.password} type="password" className="register-input"
+                               onChange={this.handlePasswordChange.bind(this)}/>
+                        {this.validator.message('password', this.state.password, 'required|alpha_num')}
+                    </div>
 
-                <div className="register-button-container">
-                    <Button className="register-button" label={"Sign Up"}/>
+                    <div className="register-button-container">
+                        <Button className="register-button" label={"Sign Up"}/>
+                    </div>
                 </div>
-            </div>
+            </form>
         )
     }
 }
+
+RegisterInput.propTypes = {
+    handleSubmit: PropTypes.func.isRequired
+};
+
+
+function mapStateToProps(state) {
+    return {
+        registerFail: state.Register.registerFail,
+        registerMessage: state.Register.registerMessage
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        register: registerUser,
+        setRegisterFail: setRegisterFail
+    }, dispatch);
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RegisterPage));
+

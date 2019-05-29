@@ -1,16 +1,30 @@
 import React from 'react';
-import {Header} from "./header/Header";
+import Header from "./header/Header";
 import {Body} from "./body/Body";
+import {bindActionCreators} from "redux";
+import {fetchUserData} from "../../actions/Auth";
+import {connect} from "react-redux";
 
-export class LandingPage extends React.PureComponent {
+class LandingPage extends React.PureComponent {
 
+    componentDidMount() {
+        this.props.fetchUserData();
+    }
 
     render() {
         return (
             <React.Fragment>
-                <Header />
-                <Body />
+                <Header/>
+                <Body/>
             </React.Fragment>
         )
     }
 }
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        fetchUserData: fetchUserData,
+    }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(LandingPage);

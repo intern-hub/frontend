@@ -4,8 +4,36 @@ import "./Header.css";
 import {Button} from "../../../utils/button/Button";
 import LinkWrapper from "../../../utils/button/LinkWrapper";
 import InternHubLogo from "../../../utils/logo/InternHubLogo";
+import {connect} from "react-redux";
+import {logoutUser} from "../../../actions/Auth";
+import {withRouter} from "react-router";
 
-export class Header extends React.PureComponent {
+class Header extends React.PureComponent {
+
+    logout() {
+        logoutUser(this.props.history);
+        window.location.reload();
+    }
+
+    getButtons() {
+        return (
+            this.props.isAuthenticated ? (
+                <React.Fragment>
+                    <div className="header-name"> Hello {this.props.username} </div>
+                    <Button className="header__register" label={"Log Out"} onClick={this.logout.bind(this)}/>
+                </React.Fragment>
+            ) : (
+                <React.Fragment>
+                    <LinkWrapper to={`/login`}>
+                        <Button className="header__register" label={"Log In"}/>
+                    </LinkWrapper>
+                    <LinkWrapper to={`/register`}>
+                        <Button className="header__sign-in" label={"Sign Up"}/>
+                    </LinkWrapper>
+                </React.Fragment>
+            )
+        );
+    }
 
     render() {
         return (
@@ -14,14 +42,18 @@ export class Header extends React.PureComponent {
                     <InternHubLogo/>
                 </div>
                 <div className="header__btns">
-                    <LinkWrapper to={`/login`}>
-                        <Button className="header__register" label={"Log In"}/>
-                    </LinkWrapper>
-                    <LinkWrapper to={`/register`}>
-                        <Button className="header__sign-in" label={"Sign Up"}/>
-                    </LinkWrapper>
+                    {this.getButtons()}
                 </div>
             </div>
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        isAuthenticated: state.Auth.isAuthenticated,
+        username: state.Auth.username
+    }
+}
+
+export default withRouter(connect(mapStateToProps)(Header));
