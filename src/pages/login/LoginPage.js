@@ -81,7 +81,8 @@ class LoginInput extends React.PureComponent {
         this.setState({password: evt.target.value});
     }
 
-    handleSubmit() {
+    handleSubmit(evt) {
+        evt.preventDefault();
         if (this.validator.allValid()) {
             this.props.handleSubmit(this.state);
         } else {
