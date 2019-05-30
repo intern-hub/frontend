@@ -92,28 +92,33 @@ export class Body extends React.PureComponent {
         let internshipCards = filteredInternships.map((internship) => <InternshipCard key={internship.id}
                                                                                       name={internship.title}
                                                                                       link={internship.link}/>);
-        if (internshipCards.length === 0)
+        let filterSelections = <div>
+              <div>Filter by Location</div>
+              <Select value={this.state.location} onChange={this.handleLocation.bind(this)}
+                      options={this.state.locations}/>
+
+              <div>Filter by Title</div>
+              <Select value={this.state.title} onChange={this.handleTitle.bind(this)}
+                      options={this.state.titles}/>
+
+              <div>Filter by Degree</div>
+              <Select value={this.state.degree} onChange={this.handleDegree.bind(this)}
+                      options={this.state.degrees}/>
+
+              <div>Filter by Season & Year</div>
+              <Select value={this.state.date} onChange={this.handleDate.bind(this)}
+                      options={this.state.dates}/>
+        </div>;
+
+        if (internshipCards.length === 0) {
             internshipCards = [<InternshipCard key="unique" name={"No internships found!"} link="#" active={false}/>];
+            filterSelections = <div></div>;
+        }
 
         return (
             <div className="body">
-                <div className="body__title">Internships @ {this.props.name}</div>
-                <div>Filter by Location</div>
-                <Select value={this.state.location} onChange={this.handleLocation.bind(this)}
-                        options={this.state.locations}/>
-
-                <div>Filter by Title</div>
-                <Select value={this.state.title} onChange={this.handleTitle.bind(this)}
-                        options={this.state.titles}/>
-
-                <div>Filter by Degree</div>
-                <Select value={this.state.degree} onChange={this.handleDegree.bind(this)}
-                        options={this.state.degrees}/>
-
-                <div>Filter by Season & Year</div>
-                <Select value={this.state.date} onChange={this.handleDate.bind(this)}
-                        options={this.state.dates}/>
-
+                <div className="body__title">Internships <span className="body__subtitle">at {this.props.name}</span></div>
+                {filterSelections} 
                 <div className="company-list">
                     {internshipCards}
                 </div>

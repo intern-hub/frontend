@@ -14,7 +14,7 @@
 
 .is-name {
     margin: 1rem;
-    font-family: Helvetica, sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 24px;
     font-weight: bold;
 
@@ -27,7 +27,7 @@
 
 .is-buttons {
     margin: 1rem;
-    font-family: Helvetica, sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 24px;
     font-weight: bold;
 
@@ -53,7 +53,7 @@
 }
 
 .apply-link {
-    font-family: Helvetica, sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 24px;
     margin: 0 1rem;
 

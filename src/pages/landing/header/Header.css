@@ -13,7 +13,7 @@
     justify-self: left;
     color: white;
 
-    font-family: Helvetica, sans-serif;
+    font-family: 'IBM Sans Plex', sans-serif;
 }
 
 .header__btns {
@@ -35,7 +35,7 @@
 }
 
 .header-name {
-    font-family: Helvetica, sans-serif;
+    font-family: 'IBM Sans Plex', sans-serif;
     display: flex;
     align-self: center;
     justify-self: center;
