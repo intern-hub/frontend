@@ -33,7 +33,7 @@ class LoginPage extends React.PureComponent {
                 <div className="login-container">
                     <div className="login-header">
                         <div className="login-header-text">
-                            Log In To
+                            Log In
                         </div>
                         <div className="login-logo">
                             <InternHubLogo black={true}/>
