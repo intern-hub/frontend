@@ -8,7 +8,8 @@
     box-shadow: -2px 2px 2px 0px rgba(0, 0, 0, .15);
     margin-top: .7rem;
 
-    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
 }
 
 .is-name {
@@ -17,9 +18,38 @@
     font-size: 24px;
     font-weight: bold;
 
+    cursor: pointer;
+
     display: flex;
     align-self: center;
     justify-self: left;
+}
+
+.is-buttons {
+    margin: 1rem;
+    font-family: Helvetica, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+
+    display: flex;
+    align-self: center;
+    justify-self: right;
+}
+
+.is-button {
+    cursor: pointer;
+
+    background-color: white;
+    color: white;
+    border: none;
+}
+
+.is-button-enabled {
+    fill: green;
+}
+
+.is-button:hover {
+    opacity: 0.5;
 }
 
 .apply-link {
