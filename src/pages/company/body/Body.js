@@ -60,7 +60,7 @@ export class Body extends React.PureComponent {
                 const dates = ["All", ...new Set(result.map(is => is.season + ' ' + is.year))].map((e) => {
                     return {
                         label: e,
-                        value: [e.split(' ')[0], parseInt(e.split(' ')[1])]
+                        value: e === "All" ? "All" : [e.split(' ')[0], parseInt(e.split(' ')[1])]
                     }
                 });
 
