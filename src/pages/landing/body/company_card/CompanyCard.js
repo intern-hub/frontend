@@ -4,7 +4,7 @@ import "./CompanyCard.css";
 import PropTypes from 'prop-types';
 import LinkWrapper from "../../../../utils/button/LinkWrapper";
 
-import {ReactComponent as PopularityIcon} from "../../../../img/heroicons/icon-upload.svg";
+import {ReactComponent as PopularityIcon} from "../../../../img/heroicons/icon-star.svg";
 
 export class CompanyCard extends React.PureComponent {
 
