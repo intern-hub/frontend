@@ -2,28 +2,49 @@
 .company-wrapper {
     background-color: #FFFFFF;
 
-    display: grid;
+    /* display: grid; */
     border-radius: .5rem;
 
     box-shadow: -2px 2px 2px 1px rgba(0, 0, 0, .25);
     margin-top: .7rem;
 
     cursor: pointer;
+
+    display: flex;
+    justify-content: space-between;
 }
 
 .company-name {
     margin: 1rem;
-    font-family: Helvetica, sans-serif;
-    font-size: 24px;
-    font-weight: bold;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
 
     display: flex;
     align-self: center;
     justify-self: left;
 }
 
+.company-info {
+    margin: 1rem;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+
+    display: flex;
+    align-self: center;
+    justify-self: left;
+
+    fill: gray;
+    color: gray;
+}
+
+.company-popularity {
+    margin-top: -2px; 
+}
+
 .apply-link {
-    font-family: Helvetica, sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 24px;
     margin: 0 1rem;
 

@@ -4,6 +4,13 @@ import PropTypes from 'prop-types';
 
 import Select from 'react-select';
 
+const selectStyles = {
+  option: (provided, state) => ({
+      ...provided,
+      fontFamily: 'IBM Plex Sans',
+  })
+};
+
 export class Body extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -12,12 +19,13 @@ export class Body extends React.PureComponent {
             locations: [],
             titles: [],
             degrees: [],
+            dates: [],
 
 
             location: {value: 'All', label: 'All'},
             degree: {value: 'All', label: 'All'},
-
             title: {value: 'All', label: 'All'},
+            date: {value: 'All', label: 'All'},
         }
     }
 
@@ -48,8 +56,15 @@ export class Body extends React.PureComponent {
                         value: e
                     }
                 });
+              
+                const dates = ["All", ...new Set(result.map(is => is.season + ' ' + is.year))].map((e) => {
+                    return {
+                        label: e,
+                        value: e === "All" ? "All" : [e.split(' ')[0], parseInt(e.split(' ')[1])]
+                    }
+                });
 
-                this.setState({internships: result, locations: locations, titles: titles, degrees: degrees});
+                this.setState({internships: result, locations: locations, titles: titles, degrees: degrees, dates: dates});
             }).catch(() => {
             this.setState({internships: []});
         });
@@ -66,6 +81,10 @@ export class Body extends React.PureComponent {
     handleDegree(evt) {
         this.setState({degree: {label: evt.label, value: evt.label}});
     }
+  
+    handleDate(evt) {
+        this.setState({date: {label: evt.label, value: evt.value}});
+    }
 
     render() {
 
@@ -73,29 +92,52 @@ export class Body extends React.PureComponent {
         filteredInternships = filteredInternships.filter((internship) => this.state.location.value === "All" || internship.location === this.state.location.value);
         filteredInternships = filteredInternships.filter((internship) => this.state.title.value === "All" || internship.title === this.state.title.value);
         filteredInternships = filteredInternships.filter((internship) => this.state.degree.value === "All" || internship.degree === this.state.degree.value);
+        filteredInternships = filteredInternships.filter((internship) => this.state.date.value === "All" || 
+            (internship.season === this.state.date.value[0] && internship.year === this.state.date.value[1]));
 
         filteredInternships = filteredInternships.sort((internshipCards) => internshipCards.title);
         let internshipCards = filteredInternships.map((internship) => <InternshipCard key={internship.id}
                                                                                       name={internship.title}
                                                                                       link={internship.link}/>);
-        if (internshipCards.length === 0)
+        let filterSelections = <div class="select__list">
+              <div className="select__item">
+                  <span className="select__label">Filter by Location</span>
+                  <Select value={this.state.location} onChange={this.handleLocation.bind(this)}
+                          styles={selectStyles} className="select__body"
+                          options={this.state.locations}/>
+              </div>
+
+              <div className="select__item">
+                  <span className="select__label">Filter by Title</span>
+                  <Select value={this.state.title} onChange={this.handleTitle.bind(this)}
+                          styles={selectStyles} className="select__body"
+                          options={this.state.titles}/>
+              </div>
+
+              <div className="select__item">
+                  <span className="select__label">Filter by Degree</span>
+                  <Select value={this.state.degree} onChange={this.handleDegree.bind(this)}
+                          styles={selectStyles} className="select__body"
+                          options={this.state.degrees}/>
+              </div>
+
+              <div className="select__item">
+                  <span className="select__label">Filter by Season & Year</span>
+                  <Select value={this.state.date} onChange={this.handleDate.bind(this)}
+                          styles={selectStyles} className="select__body"
+                          options={this.state.dates}/>
+              </div>
+        </div>;
+
+        if (internshipCards.length === 0) {
             internshipCards = [<InternshipCard key="unique" name={"No internships found!"} link="#" active={false}/>];
+            filterSelections = <div></div>;
+        }
 
         return (
             <div className="body">
-                <div className="body__title"> INTERNSHIPS</div>
-                <div> Location</div>
-                <Select value={this.state.location} onChange={this.handleLocation.bind(this)}
-                        options={this.state.locations}/>
-
-                <div> Titles </div>
-                <Select value={this.state.title} onChange={this.handleTitle.bind(this)}
-                        options={this.state.titles}/>
-
-                <div> Degree </div>
-                <Select value={this.state.degree} onChange={this.handleDegree.bind(this)}
-                        options={this.state.degrees}/>
-
+                <div className="body__title">Internships <span className="body__subtitle">at {this.props.name}</span></div>
+                {filterSelections} 
                 <div className="company-list">
                     {internshipCards}
                 </div>
