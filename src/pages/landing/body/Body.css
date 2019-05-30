@@ -41,12 +41,28 @@
     margin-right: 0.5rem;
 }
 
+.select__item-alone {
+    flex-grow: 1;
+}
+
 .select__body {
     font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .select__label {
     font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.select__sorting {
+    display: grid;
+    grid-template-columns: 1fr min-content;
+}
+
+.select__sorting__icon {
+    margin: 0 1rem;
+    display: flex;
+    align-self: center;
+    justify-self: center;
 }
 
 .search {
