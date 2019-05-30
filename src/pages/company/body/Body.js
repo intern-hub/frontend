@@ -97,7 +97,7 @@ export class Body extends React.PureComponent {
 
         return (
             <div className="body">
-                <div className="body__title"> INTERNSHIPS</div>
+                <div className="body__title">Internships @ {this.props.name}</div>
                 <div>Filter by Location</div>
                 <Select value={this.state.location} onChange={this.handleLocation.bind(this)}
                         options={this.state.locations}/>

@@ -55,7 +55,7 @@ export class Body extends React.Component {
 
         return (
             <div className="body">
-                <div className="body__title"> COMPANIES</div>
+                <div className="body__title"> Companies</div>
                 <div className="search">
                     <Search onChange={this.onCompanySearch.bind(this)} value={this.state.searchValue}/>
                 </div>
