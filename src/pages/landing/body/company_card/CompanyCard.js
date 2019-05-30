@@ -6,10 +6,14 @@ import LinkWrapper from "../../../../utils/button/LinkWrapper";
 
 export class CompanyCard extends React.PureComponent {
 
+    onClick() {
+        window.localStorage.setItem("last-clicked-company", this.props.name);
+    }
+
     render() {
         return (
-            <LinkWrapper to={`/company/${this.props.name}`}>
-                <div className="company-wrapper">
+            <LinkWrapper to={`/company/${this.props.name}`} >
+                <div id={this.props.name} className="company-wrapper" onClick={this.onClick.bind(this)}>
                     <div className="company-name">
                         {this.props.name}
                     </div>

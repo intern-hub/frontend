@@ -15,6 +15,8 @@ const LinkWrapper = (props) => {
 
     const childrenWithLink = React.cloneElement(children, {
         onClick: () => {
+            if(children.props && children.props.onClick)
+                children.props.onClick();
             history.push(to);
         }
     });

@@ -24,6 +24,17 @@ export class Body extends React.Component {
                 const result = json.sort((comp1, comp2) => comp1.name.localeCompare(comp2.name));
                 this.setState({companies: result, filteredCompanies: result})
             });
+
+        let lastClickedCompany = window.localStorage.getItem("last-clicked-company");
+        if (!lastClickedCompany)
+            return;
+
+        setTimeout(() => {
+            let lastClickedCompanyEl = document.getElementById(lastClickedCompany);
+            if (lastClickedCompanyEl) {
+                lastClickedCompanyEl.scrollIntoView();
+            }
+        }, 1000);
     }
 
     onCompanySearch(eventObj) {
@@ -38,7 +49,9 @@ export class Body extends React.Component {
     }
 
     render() {
-        const companyList = this.state.filteredCompanies.map(companyObj => <CompanyCard key={companyObj.id} id={companyObj.id} name={companyObj.name}/>);
+        const companyList = this.state.filteredCompanies.map(companyObj => <CompanyCard key={companyObj.id}
+                                                                                        id={companyObj.id}
+                                                                                        name={companyObj.name}/>);
 
         return (
             <div className="body">
