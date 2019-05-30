@@ -4,6 +4,13 @@ import PropTypes from 'prop-types';
 
 import Select from 'react-select';
 
+const selectStyles = {
+  option: (provided, state) => ({
+      ...provided,
+      fontFamily: 'IBM Plex Sans',
+  })
+};
+
 export class Body extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -93,20 +100,24 @@ export class Body extends React.PureComponent {
                                                                                       name={internship.title}
                                                                                       link={internship.link}/>);
         let filterSelections = <div>
-              <div>Filter by Location</div>
+              <div className="select__body">Filter by Location</div>
               <Select value={this.state.location} onChange={this.handleLocation.bind(this)}
+                      styles={selectStyles} className="select__body"
                       options={this.state.locations}/>
 
-              <div>Filter by Title</div>
+              <div className="select__body">Filter by Title</div>
               <Select value={this.state.title} onChange={this.handleTitle.bind(this)}
+                      styles={selectStyles} className="select__body"
                       options={this.state.titles}/>
 
-              <div>Filter by Degree</div>
+              <div className="select__body">Filter by Degree</div>
               <Select value={this.state.degree} onChange={this.handleDegree.bind(this)}
+                      styles={selectStyles} className="select__body"
                       options={this.state.degrees}/>
 
-              <div>Filter by Season & Year</div>
+              <div className="select__body">Filter by Season & Year</div>
               <Select value={this.state.date} onChange={this.handleDate.bind(this)}
+                      styles={selectStyles} className="select__body"
                       options={this.state.dates}/>
         </div>;
 
