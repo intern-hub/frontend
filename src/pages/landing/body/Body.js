@@ -2,16 +2,27 @@ import React from 'react';
 import {Search} from "./search/Search";
 import "./Body.css";
 import {CompanyCard} from "./company_card/CompanyCard";
+import Select from 'react-select';
+
+import {ReactComponent as SortIcon} from "../../../img/heroicons/icon-trending-up.svg"
 
 export class Body extends React.Component {
 
     constructor(props) {
         super(props);
 
+        let sortTypes = [
+            {value: (comp1, comp2) => comp1.name.localeCompare(comp2.name), label: 'Alphabetical'},
+            {value: (comp1, comp2) => comp2.popularity - comp1.popularity, label: 'By Popularity'},
+        ];
+
         this.state = {
             companies: [],
             filteredCompanies: [],
             searchValue: '',
+
+            sortTypes: sortTypes,
+            sortType:  sortTypes[0],
         };
     }
 
@@ -21,8 +32,7 @@ export class Body extends React.Component {
                 return response.json();
             })
             .then((json) => {
-                const result = json.sort((comp1, comp2) => comp1.name.localeCompare(comp2.name));
-                this.setState({companies: result, filteredCompanies: result})
+                this.setState({companies: json, filteredCompanies: json})
             });
 
         let lastClickedCompany = window.localStorage.getItem("last-clicked-company");
@@ -37,6 +47,10 @@ export class Body extends React.Component {
         }, 1000);
     }
 
+    handleSortType(evt) {
+      this.setState({sortType: {label: evt.label, value: evt.value}});
+    }
+
     onCompanySearch(eventObj) {
         let searchStr = eventObj.target.value;
         if (searchStr === undefined || searchStr === null) {
@@ -49,7 +63,7 @@ export class Body extends React.Component {
     }
 
     render() {
-        const companyList = this.state.filteredCompanies.map(companyObj => <CompanyCard key={companyObj.id}
+        const companyList = this.state.filteredCompanies.sort(this.state.sortType.value).map(companyObj => <CompanyCard key={companyObj.id}
                                                                                         id={companyObj.id}
                                                                                         name={companyObj.name}
                                                                                         popularity={companyObj.popularity}/>);
@@ -57,8 +71,22 @@ export class Body extends React.Component {
         return (
             <div className="body">
                 <div className="body__title"> Companies</div>
+
                 <div className="search">
+                    <span className="select__label">Search Companies</span>
                     <Search onChange={this.onCompanySearch.bind(this)} value={this.state.searchValue}/>
+                </div>
+
+                <div className="select__list">
+                    <div className="select__item-alone">
+                        <span className="select__label">Sort Companies</span>
+                        <div className="select__sorting">
+                            <Select value={this.state.sortType} onChange={this.handleSortType.bind(this)}
+                                    className="select__body"
+                                    options={this.state.sortTypes}/>
+                            <SortIcon className="select__sorting__icon"/>
+                        </div>
+                    </div>
                 </div>
 
                 <div className="company-list">

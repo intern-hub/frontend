@@ -4,13 +4,6 @@ import PropTypes from 'prop-types';
 
 import Select from 'react-select';
 
-const selectStyles = {
-  option: (provided, state) => ({
-      ...provided,
-      fontFamily: 'IBM Plex Sans',
-  })
-};
-
 export class Body extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -20,7 +13,6 @@ export class Body extends React.PureComponent {
             titles: [],
             degrees: [],
             dates: [],
-
 
             location: {value: 'All', label: 'All'},
             degree: {value: 'All', label: 'All'},
@@ -99,32 +91,32 @@ export class Body extends React.PureComponent {
         let internshipCards = filteredInternships.map((internship) => <InternshipCard key={internship.id}
                                                                                       name={internship.title}
                                                                                       link={internship.link}/>);
-        let filterSelections = <div class="select__list">
+        let filterSelections = <div className="select__list">
               <div className="select__item">
                   <span className="select__label">Filter by Location</span>
                   <Select value={this.state.location} onChange={this.handleLocation.bind(this)}
-                          styles={selectStyles} className="select__body"
+                          className="select__body"
                           options={this.state.locations}/>
               </div>
 
               <div className="select__item">
                   <span className="select__label">Filter by Title</span>
                   <Select value={this.state.title} onChange={this.handleTitle.bind(this)}
-                          styles={selectStyles} className="select__body"
+                          className="select__body"
                           options={this.state.titles}/>
               </div>
 
               <div className="select__item">
                   <span className="select__label">Filter by Degree</span>
                   <Select value={this.state.degree} onChange={this.handleDegree.bind(this)}
-                          styles={selectStyles} className="select__body"
+                          className="select__body"
                           options={this.state.degrees}/>
               </div>
 
               <div className="select__item">
                   <span className="select__label">Filter by Season & Year</span>
                   <Select value={this.state.date} onChange={this.handleDate.bind(this)}
-                          styles={selectStyles} className="select__body"
+                          className="select__body"
                           options={this.state.dates}/>
               </div>
         </div>;
