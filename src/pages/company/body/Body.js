@@ -12,12 +12,13 @@ export class Body extends React.PureComponent {
             locations: [],
             titles: [],
             degrees: [],
+            dates: [],
 
 
             location: {value: 'All', label: 'All'},
             degree: {value: 'All', label: 'All'},
-
             title: {value: 'All', label: 'All'},
+            date: {value: 'All', label: 'All'},
         }
     }
 
@@ -48,8 +49,15 @@ export class Body extends React.PureComponent {
                         value: e
                     }
                 });
+              
+                const dates = ["All", ...new Set(result.map(is => is.season + ' ' + is.year))].map((e) => {
+                    return {
+                        label: e,
+                        value: [e.split(' ')[0], parseInt(e.split(' ')[1])]
+                    }
+                });
 
-                this.setState({internships: result, locations: locations, titles: titles, degrees: degrees});
+                this.setState({internships: result, locations: locations, titles: titles, degrees: degrees, dates: dates});
             }).catch(() => {
             this.setState({internships: []});
         });
@@ -66,6 +74,10 @@ export class Body extends React.PureComponent {
     handleDegree(evt) {
         this.setState({degree: {label: evt.label, value: evt.label}});
     }
+  
+    handleDate(evt) {
+        this.setState({date: {label: evt.label, value: evt.value}});
+    }
 
     render() {
 
@@ -73,6 +85,8 @@ export class Body extends React.PureComponent {
         filteredInternships = filteredInternships.filter((internship) => this.state.location.value === "All" || internship.location === this.state.location.value);
         filteredInternships = filteredInternships.filter((internship) => this.state.title.value === "All" || internship.title === this.state.title.value);
         filteredInternships = filteredInternships.filter((internship) => this.state.degree.value === "All" || internship.degree === this.state.degree.value);
+        filteredInternships = filteredInternships.filter((internship) => this.state.date.value === "All" || 
+            (internship.season === this.state.date.value[0] && internship.year === this.state.date.value[1]));
 
         filteredInternships = filteredInternships.sort((internshipCards) => internshipCards.title);
         let internshipCards = filteredInternships.map((internship) => <InternshipCard key={internship.id}
@@ -84,17 +98,21 @@ export class Body extends React.PureComponent {
         return (
             <div className="body">
                 <div className="body__title"> INTERNSHIPS</div>
-                <div> Location</div>
+                <div>Filter by Location</div>
                 <Select value={this.state.location} onChange={this.handleLocation.bind(this)}
                         options={this.state.locations}/>
 
-                <div> Titles </div>
+                <div>Filter by Title</div>
                 <Select value={this.state.title} onChange={this.handleTitle.bind(this)}
                         options={this.state.titles}/>
 
-                <div> Degree </div>
+                <div>Filter by Degree</div>
                 <Select value={this.state.degree} onChange={this.handleDegree.bind(this)}
                         options={this.state.degrees}/>
+
+                <div>Filter by Season & Year</div>
+                <Select value={this.state.date} onChange={this.handleDate.bind(this)}
+                        options={this.state.dates}/>
 
                 <div className="company-list">
                     {internshipCards}
