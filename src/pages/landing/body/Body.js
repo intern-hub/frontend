@@ -51,7 +51,8 @@ export class Body extends React.Component {
     render() {
         const companyList = this.state.filteredCompanies.map(companyObj => <CompanyCard key={companyObj.id}
                                                                                         id={companyObj.id}
-                                                                                        name={companyObj.name}/>);
+                                                                                        name={companyObj.name}
+                                                                                        popularity={companyObj.popularity}/>);
 
         return (
             <div className="body">

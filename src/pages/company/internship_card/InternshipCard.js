@@ -4,9 +4,9 @@ import "./InternshipCard.css";
 import PropTypes from 'prop-types';
 import ExternalLinkWrapper from "../../../utils/button/ExternalLinkWrapper";
 
-import {ReactComponent as EditIcon} from "../../../img/heroicons/icon-edit.svg"
-import {ReactComponent as CheckIcon} from "../../../img/heroicons/icon-check-circle.svg"
-import {ReactComponent as FlagIcon} from "../../../img/heroicons/icon-flag.svg"
+import {ReactComponent as NotesIcon} from "../../../img/heroicons/icon-edit.svg"
+import {ReactComponent as AppliedIcon} from "../../../img/heroicons/icon-check-circle.svg"
+import {ReactComponent as BrokenIcon} from "../../../img/heroicons/icon-flag.svg"
 
 export class InternshipCard extends React.PureComponent {
 
@@ -20,9 +20,9 @@ export class InternshipCard extends React.PureComponent {
                     </div>
                   </ExternalLinkWrapper>
                   <div className="is-buttons">
-                      <button className="is-button"><EditIcon/></button>
-                      <button className="is-button"><CheckIcon/></button>
-                      <button className="is-button"><FlagIcon/></button>
+                      <button className="is-button"><NotesIcon/></button>
+                      <button className="is-button"><AppliedIcon/></button>
+                      <button className="is-button"><BrokenIcon/></button>
                   </div>
                 </div>
             )

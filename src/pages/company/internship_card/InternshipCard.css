@@ -2,7 +2,7 @@
 .is-wrapper {
     background-color: #FFFFFF;
 
-    display: grid;
+    /* display: grid; */
     border-radius: .5rem;
 
     box-shadow: -2px 2px 2px 0px rgba(0, 0, 0, .15);
