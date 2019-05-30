@@ -99,26 +99,34 @@ export class Body extends React.PureComponent {
         let internshipCards = filteredInternships.map((internship) => <InternshipCard key={internship.id}
                                                                                       name={internship.title}
                                                                                       link={internship.link}/>);
-        let filterSelections = <div>
-              <div className="select__body">Filter by Location</div>
-              <Select value={this.state.location} onChange={this.handleLocation.bind(this)}
-                      styles={selectStyles} className="select__body"
-                      options={this.state.locations}/>
+        let filterSelections = <div class="select__list">
+              <div className="select__item">
+                  <span className="select__label">Filter by Location</span>
+                  <Select value={this.state.location} onChange={this.handleLocation.bind(this)}
+                          styles={selectStyles} className="select__body"
+                          options={this.state.locations}/>
+              </div>
 
-              <div className="select__body">Filter by Title</div>
-              <Select value={this.state.title} onChange={this.handleTitle.bind(this)}
-                      styles={selectStyles} className="select__body"
-                      options={this.state.titles}/>
+              <div className="select__item">
+                  <span className="select__label">Filter by Title</span>
+                  <Select value={this.state.title} onChange={this.handleTitle.bind(this)}
+                          styles={selectStyles} className="select__body"
+                          options={this.state.titles}/>
+              </div>
 
-              <div className="select__body">Filter by Degree</div>
-              <Select value={this.state.degree} onChange={this.handleDegree.bind(this)}
-                      styles={selectStyles} className="select__body"
-                      options={this.state.degrees}/>
+              <div className="select__item">
+                  <span className="select__label">Filter by Degree</span>
+                  <Select value={this.state.degree} onChange={this.handleDegree.bind(this)}
+                          styles={selectStyles} className="select__body"
+                          options={this.state.degrees}/>
+              </div>
 
-              <div className="select__body">Filter by Season & Year</div>
-              <Select value={this.state.date} onChange={this.handleDate.bind(this)}
-                      styles={selectStyles} className="select__body"
-                      options={this.state.dates}/>
+              <div className="select__item">
+                  <span className="select__label">Filter by Season & Year</span>
+                  <Select value={this.state.date} onChange={this.handleDate.bind(this)}
+                          styles={selectStyles} className="select__body"
+                          options={this.state.dates}/>
+              </div>
         </div>;
 
         if (internshipCards.length === 0) {

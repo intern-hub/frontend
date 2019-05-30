@@ -18,11 +18,34 @@
     color: #60bCC2;
 }
 
-.select__label {
-    font-family: 'IBM Plex Sans', sans-serif;
+.select__list {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+    /* For desktop, place all selects on the same row */ 
+    .select__list {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: stretch;
+        width: 100%;
+    }
+}
+
+.select__item {
+    flex-grow: 1;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
 }
 
 .select__body {
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.select__label {
     font-family: 'IBM Plex Sans', sans-serif;
 }
 
