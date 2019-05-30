@@ -12,7 +12,7 @@ import {toast} from "react-toastify";
 
 class ForgotPasswordPage extends React.PureComponent {
 
-    handleSubmit(state, cleanup) {
+    handleSubmit(state, successCallback) {
         let email = state.email;
         fetch("https://internhub.us.to/api/auth/password/forgot", {
           method: 'POST',
@@ -27,7 +27,7 @@ class ForgotPasswordPage extends React.PureComponent {
         }).then(([status, data]) => {
           if (status === 200) {
             toast.success("A password reset email will be sent to " + email + " shortly.");
-            cleanup();
+            successCallback();
           }
           else {
             toast.error(data.error);
