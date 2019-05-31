@@ -43,7 +43,7 @@ class ResetPasswordPage extends React.PureComponent {
           }
 
           let self = this;
-          setInterval(() => {
+          let countdown_task = setInterval(() => {
             if (self.state.countdown > 0) {
               self.setState({ 
                 subtitle: `You will be redirected to the home page in ${self.state.countdown - 1} seconds.`, 
@@ -51,6 +51,7 @@ class ResetPasswordPage extends React.PureComponent {
               });
             }
             else {
+              clearInterval(countdown_task);
               self.props.history.push('/');
             }
           }, 1000);
