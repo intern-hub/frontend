@@ -11,8 +11,7 @@ class ResetPasswordPage extends React.PureComponent {
         super(props);
         this.state = { 
             title: 'Verifying token ...',
-            subtitle: 'This will take a minute.',
-            countdown: 3 
+            countdown: -1
         };
     }
 
@@ -31,13 +30,17 @@ class ResetPasswordPage extends React.PureComponent {
           if (status === 200) {
             this.setState({ 
               title: 'Your password has been reset!', 
-              subtitle: `You will be redirected to the home page in ${this.state.countdown} seconds.`
+              countdown: 3,
+              redirectPage: 'login',
+              redirectRoute: '/login',
             });
           }
           else {
             this.setState({ 
               title: 'Token verification failed.', 
-              subtitle: `You will be redirected to the home page in ${this.state.countdown} seconds.`
+              countdown: 3,
+              redirectPage: 'home',
+              redirectRoute: '/',
             });
             toast.error(data.error);
           }
@@ -46,13 +49,12 @@ class ResetPasswordPage extends React.PureComponent {
           let countdown_task = setInterval(() => {
             if (self.state.countdown > 0) {
               self.setState({ 
-                subtitle: `You will be redirected to the home page in ${self.state.countdown - 1} seconds.`, 
                 countdown: self.state.countdown - 1 
               });
             }
             else {
               clearInterval(countdown_task);
-              self.props.history.push('/');
+              self.props.history.push(this.state.redirectRoute);
             }
           }, 1000);
         });
@@ -63,7 +65,7 @@ class ResetPasswordPage extends React.PureComponent {
             <div className="reset-container">
               <div className="reset-display">
                   <h1 className="reset-title">{this.state.title}</h1><br/>
-                  <h2 className="reset-subtitle">{this.state.subtitle}</h2>
+                  <h2 className="reset-subtitle">{this.state.countdown >= 0 ? `You will be redirected to the ${this.state.redirectPage} page in ${this.state.countdown} seconds.` : "This will only be a minute."}</h2>
               </div>
             </div>
         );
