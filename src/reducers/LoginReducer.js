@@ -1,4 +1,4 @@
-import {LOGIN_FAIL, LOGIN_SUCCESS, SET_LOGIN_FAIL} from "../actions/Auth";
+import {LOGIN_FAIL, LOGIN_SUCCESS, SET_LOGIN_FAIL} from "../actions/Account";
 
 
 export default function LoginReducer(state = {

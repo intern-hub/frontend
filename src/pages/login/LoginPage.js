@@ -9,7 +9,7 @@ import LinkWrapper from "../../utils/button/LinkWrapper.js";
 import PropTypes from 'prop-types';
 import SimpleReactValidator from 'simple-react-validator';
 import {bindActionCreators} from "redux";
-import {loginUser, setLoginFail} from "../../actions/Auth";
+import {loginUser, setLoginFail} from "../../actions/Account";
 
 import {toast} from "react-toastify";
 import {withRouter} from "react-router";

@@ -1,133 +1,65 @@
+// actions that need authenticating
+
+
 import {myFetch} from "../utils/MyFetch";
 
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-export const LOGIN_FAIL = "LOGIN_FAIL";
-export const SET_LOGIN_FAIL = "SET_LOGIN_FAIL";
-export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
-export const REGISTER_FAIL = "REGISTER_FAIL";
-export const SET_REGISTER_FAIL = "LOGIN_FAIL";
-export const HYDRATE = "HYDRATE";
+export function updateIfExists(applicationId, applicationNotes) {
+    const token = window.localStorage.getItem("token");
+    if (!token)
+        return;
 
-export function loginUser(username, password, history) {
-    return function (dispatch) {
-        myFetch("https://internhub.us.to/api/auth/login", {
-            body: JSON.stringify({
-                username: username,
-                password: password
-            }),
-            headers: {
-                'Content-Type': 'application/json',
+    myFetch(`https://internhub.us.to/api/applications/${applicationId}`, {
+        body: JSON.stringify({
+            notes: applicationNotes
+        }),
+        headers: {
+            'Authorization': 'Bearer ' + token,
+            'Content-Type': 'application/json',
+        },
+        method: 'PUT',
+    }).catch(err => {
+        console.error("Could not update application notes");
+    })
+}
+
+export function updateIfNotExists(positionId, applicationNotes) {
+    const token = window.localStorage.getItem("token");
+    if (!token)
+        return;
+
+    myFetch(`https://internhub.us.to/api/applications/`, {
+        body: JSON.stringify({
+            position: {
+                id: positionId
             },
-            method: 'POST',
-        }).then(response => {
-            if(!response.token) {
-                console.error("Something went horribly wrong");
-                return;
-            }
-            dispatch(loginSuccess());
-
-            window.localStorage.setItem("token", response.token);
-            history.push("/");
-        }).catch(err => {
-            let failMsg = err;
-            if (err.message === "401")
-                failMsg = "Invalid username and password.";
-            else failMsg = "Unknown error, could not login.";
-
-            dispatch(loginFail(failMsg));
-        })
-    }
+            notes: applicationNotes
+        }),
+        headers: {
+            'Authorization': 'Bearer ' + token,
+            'Content-Type': 'application/json',
+        },
+        method: 'POST',
+    }).catch(err => {
+        console.error("Could not create application");
+    })
 }
 
-export function logoutUser(history) {
-    window.localStorage.removeItem("token");
-    history.push("/");
+export function getAllApplications(companyName) {
+    const token = window.localStorage.getItem("token");
+    if (!token)
+        return;
+
+    return myFetch(`https://internhub.us.to/api/applications?coname=${companyName}`, {
+        headers: new Headers({
+            'Authorization': 'Bearer ' + token,
+            'Content-Type': 'application/json',
+        }),
+        method: 'GET',
+    }).then(response => {
+        return response;
+    }).catch(err => {
+        console.error("Could not fetch applications for the given company");
+        return [];
+    })
 }
 
-export function registerUser(email, username, password, history) {
-    return function (dispatch) {
-        myFetch("https://internhub.us.to/api/auth/signup", {
-            body: JSON.stringify({
-                email: email,
-                username: username,
-                password: password
-            }),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            method: "POST",
-        }).then(() => {
-            dispatch(registerSuccess());
-            dispatch(loginUser(username, password, history));
-        }).catch(e => {
-            let failMsg;
-            if (e.message === "409")
-                failMsg = "That username has already been taken.";
-            else failMsg = "Unknown error, could not sign up.";
-            dispatch(registerFail(failMsg));
-        })
-    }
-}
-
-export function fetchUserData() {
-    return function(dispatch) {
-        const token = window.localStorage.getItem("token");
-        if(!token)
-            return;
-
-
-        myFetch("https://internhub.us.to/api/auth/me", {
-            method: "GET",
-            headers: new Headers({
-                'Authorization': 'Bearer ' + token
-            })
-        }).then(response => {
-            dispatch(loginSuccess());
-            dispatch(hydrate(response));
-        })
-    }
-}
-
-function loginSuccess() {
-    return {
-        type: LOGIN_SUCCESS,
-    }
-}
-
-function loginFail(msg) {
-    return {
-        type: LOGIN_FAIL,
-        reason: msg
-    }
-}
-
-function registerSuccess() {
-    return {
-        type: REGISTER_SUCCESS,
-    }
-}
-
-function registerFail(msg) {
-    return {
-        type: REGISTER_FAIL,
-        reason: msg
-    }
-}
-
-export function setRegisterFail(fail) {
-    return {
-        type: SET_REGISTER_FAIL,
-        registerFail: fail
-    }
-}
-
-export function setLoginFail(fail) {
-    return {
-        type: SET_LOGIN_FAIL,
-        loginFail: fail
-    }
-}
-
-export function hydrate(obj) {
-    return Object.assign({}, obj, {type: HYDRATE});
-}

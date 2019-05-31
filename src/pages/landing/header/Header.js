@@ -5,7 +5,7 @@ import {Button} from "../../../utils/button/Button";
 import LinkWrapper from "../../../utils/button/LinkWrapper";
 import InternHubLogo from "../../../utils/logo/InternHubLogo";
 import {connect} from "react-redux";
-import {logoutUser} from "../../../actions/Auth";
+import {logoutUser} from "../../../actions/Account";
 import {withRouter} from "react-router";
 
 class Header extends React.PureComponent {

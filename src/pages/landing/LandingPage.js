@@ -2,7 +2,7 @@ import React from 'react';
 import Header from "./header/Header";
 import {Body} from "./body/Body";
 import {bindActionCreators} from "redux";
-import {fetchUserData} from "../../actions/Auth";
+import {fetchUserData} from "../../actions/Account";
 import {connect} from "react-redux";
 
 class LandingPage extends React.PureComponent {

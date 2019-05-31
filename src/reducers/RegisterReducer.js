@@ -1,4 +1,4 @@
-import {REGISTER_FAIL, REGISTER_SUCCESS, SET_REGISTER_FAIL} from "../actions/Auth";
+import {REGISTER_FAIL, REGISTER_SUCCESS, SET_REGISTER_FAIL} from "../actions/Account";
 
 export default function RegisterReducer(state = {
     registerFail: false,

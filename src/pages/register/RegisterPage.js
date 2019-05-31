@@ -9,7 +9,7 @@ import {connect} from "react-redux";
 
 import {toast} from "react-toastify";
 import PropTypes from 'prop-types';
-import {registerUser, setRegisterFail} from "../../actions/Auth";
+import {registerUser, setRegisterFail} from "../../actions/Account";
 import {withRouter} from "react-router";
 
 class RegisterPage extends React.PureComponent {

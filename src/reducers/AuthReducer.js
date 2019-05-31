@@ -1,4 +1,4 @@
-import {HYDRATE, LOGIN_SUCCESS} from "../actions/Auth";
+import {HYDRATE, LOGIN_SUCCESS} from "../actions/Account";
 
 export default function AuthReducer(state = {
     isAuthenticated: false,
