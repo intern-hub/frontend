@@ -4,68 +4,73 @@ import "./ResetPasswordPage.css";
 
 import {toast} from "react-toastify";
 import {withRouter} from "react-router";
+import SimpleReactValidator from 'simple-react-validator';
+
+import {Button} from "../../utils/button/Button";
 
 class ResetPasswordPage extends React.PureComponent {
 
     constructor(props) {
         super(props);
+        this.validator = new SimpleReactValidator();
         this.state = { 
-            title: 'Verifying token ...',
-            countdown: -1
+            password: ''
         };
     }
 
-    componentDidMount() {
+    handleSubmit(evt) {
+        evt.preventDefault();
+        if (!this.validator.allValid()) {
+            this.validator.showMessages();
+            this.forceUpdate();
+            return;
+        }
+
         fetch("https://internhub.us.to/api/auth/password/reset", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({token: this.props.token})
+          body: JSON.stringify({
+            token: this.props.token,
+            newPassword: this.state.password
+          })
         }).then(response => {
           const status = response.status;
           const data = status === 200 ? {} : response.json();
           return Promise.all([status, data]);
         }).then(([status, data]) => {
           if (status === 200) {
-            this.setState({ 
-              title: 'Your password has been reset!', 
-              countdown: 3,
-              redirectPage: 'login',
-              redirectRoute: '/login',
-            });
+            toast.success("Your password has been changed! Use it to log in.");
+            this.props.history.push('/login');
           }
           else {
-            this.setState({ 
-              title: 'Token verification failed.', 
-              countdown: 3,
-              redirectPage: 'home',
-              redirectRoute: '/',
-            });
             toast.error(data.error);
+            this.setState({password: ''});
           }
-
-          let self = this;
-          let countdown_task = setInterval(() => {
-            if (self.state.countdown > 0) {
-              self.setState({ 
-                countdown: self.state.countdown - 1 
-              });
-            }
-            else {
-              clearInterval(countdown_task);
-              self.props.history.push(this.state.redirectRoute);
-            }
-          }, 1000);
         });
+    }
+  
+    handlePasswordChange(evt) {
+        this.setState({password: evt.target.value});
     }
 
     render() {
         return (
             <div className="reset-container">
               <div className="reset-display">
-                  <h1 className="reset-title">{this.state.title}</h1><br/>
-                  <h2 className="reset-subtitle">{this.state.countdown >= 0 ? `You will be redirected to the ${this.state.redirectPage} page in ${this.state.countdown} seconds.` : "This will only be a minute."}</h2>
+                  <h1 className="reset-title">Enter A New Password</h1><br/>
+                  <form onSubmit={this.handleSubmit.bind(this)}>
+                      <div className="reset-password">
+                        <input type="password" className="reset-input" value={this.state.password}
+                                onChange={this.handlePasswordChange.bind(this)}/>
+                          {this.validator.message('password', this.state.password, 'required')}
+                      </div>
+                      <div class="reset-button-container">
+                          <Button className="reset-button" label={"Submit"}/>
+                      </div>
+                  </form>
+
               </div>
             </div>
         );
