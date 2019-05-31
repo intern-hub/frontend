@@ -47,7 +47,7 @@ export function updateIfNotExists(positionId, applicationNotes) {
 export function getAllApplications(companyName) {
     const token = window.localStorage.getItem("token");
     if (!token)
-        return;
+        return Promise.resolve([]);
 
     return myFetch(`https://internhub.us.to/api/applications?coname=${companyName}`, {
         headers: new Headers({

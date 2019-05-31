@@ -122,5 +122,5 @@ InternshipCard.propTypes = {
 
 InternshipCard.defaultProps = {
     name: "No internships found",
-    active: true
+    active: true,
 };
