@@ -5,6 +5,7 @@ import {Button} from "../../utils/button/Button";
 import InternHubLogo from "../../utils/logo/InternHubLogo";
 
 import PropTypes from 'prop-types';
+import {withRouter} from "react-router";
 import SimpleReactValidator from 'simple-react-validator';
 
 import {toast} from "react-toastify";
@@ -12,7 +13,7 @@ import {toast} from "react-toastify";
 
 class ForgotPasswordPage extends React.PureComponent {
 
-    handleSubmit(state, successCallback) {
+    handleSubmit(state) {
         let email = state.email;
         fetch("https://internhub.us.to/api/auth/password/forgot", {
           method: 'POST',
@@ -27,7 +28,7 @@ class ForgotPasswordPage extends React.PureComponent {
         }).then(([status, data]) => {
           if (status === 200) {
             toast.success("A password reset email will be sent to " + email + " shortly.");
-            successCallback();
+            this.props.history.push("/");
           }
           else {
             toast.error(data.error);
@@ -54,7 +55,7 @@ class ForgotPasswordPage extends React.PureComponent {
     }
 }
 
-export default ForgotPasswordPage;
+export default withRouter(ForgotPasswordPage);
 
 class ForgotPasswordInput extends React.PureComponent {
     constructor(props) {
@@ -78,7 +79,7 @@ class ForgotPasswordInput extends React.PureComponent {
     handleSubmit(evt) {
         evt.preventDefault();
         if (this.validator.allValid()) {
-            this.props.handleSubmit(this.state, () => this.setState({username: '', email: ''}));
+            this.props.handleSubmit(this.state);
         } else {
             this.validator.showMessages();
             this.forceUpdate();
