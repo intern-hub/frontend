@@ -1,31 +1,38 @@
 import React from 'react';
 
-import "./LoginPage.css";
+import "./ForgotPasswordPage.css";
 import {Button} from "../../utils/button/Button";
 import InternHubLogo from "../../utils/logo/InternHubLogo";
-import {connect} from 'react-redux';
-import LinkWrapper from "../../utils/button/LinkWrapper.js";
 
 import PropTypes from 'prop-types';
 import SimpleReactValidator from 'simple-react-validator';
-import {bindActionCreators} from "redux";
-import {loginUser, setLoginFail} from "../../actions/Auth";
 
 import {toast} from "react-toastify";
-import {withRouter} from "react-router";
 
 
-class LoginPage extends React.PureComponent {
+class ForgotPasswordPage extends React.PureComponent {
 
-    componentWillUpdate(nextProps, nextState, nextContext) {
-        if (nextProps.loginFail && !this.props.loginFail) {
-            toast.error(nextProps.loginMessage);
-            this.props.setLoginFail(false);
-        }
-    }
-
-    handleSubmit({username, password}) {
-        this.props.login(username, password, this.props.history);
+    handleSubmit(state, successCallback) {
+        let email = state.email;
+        fetch("https://internhub.us.to/api/auth/password/forgot", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(state)
+        }).then(response => {
+          const status = response.status;
+          const data = status === 200 ? {} : response.json();
+          return Promise.all([status, data]);
+        }).then(([status, data]) => {
+          if (status === 200) {
+            toast.success("A password reset email will be sent to " + email + " shortly.");
+            successCallback();
+          }
+          else {
+            toast.error(data.error);
+          }
+        });
     }
 
     render() {
@@ -34,43 +41,29 @@ class LoginPage extends React.PureComponent {
                 <div className="login-container">
                     <div className="login-header">
                         <div className="login-header-text">
-                            Log In
+                            Reset Password 
                         </div>
                         <div className="login-logo">
                             <InternHubLogo black={true}/>
                         </div>
                     </div>
-                    <LoginInput handleSubmit={this.handleSubmit.bind(this)}/>
+                    <ForgotPasswordInput handleSubmit={this.handleSubmit.bind(this)}/>
                 </div>
             </div>
         );
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        loginFail: state.Login.loginFail,
-        loginMessage: state.Login.loginMessage
-    }
-}
+export default ForgotPasswordPage;
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({
-        login: loginUser,
-        setLoginFail: setLoginFail
-    }, dispatch);
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginPage));
-
-class LoginInput extends React.PureComponent {
+class ForgotPasswordInput extends React.PureComponent {
     constructor(props) {
         super(props);
         this.validator = new SimpleReactValidator();
 
         this.state = {
             username: '',
-            password: ''
+            email: ''
         }
     }
 
@@ -78,14 +71,14 @@ class LoginInput extends React.PureComponent {
         this.setState({username: evt.target.value});
     }
 
-    handlePasswordChange(evt) {
-        this.setState({password: evt.target.value});
+    handleEmailChange(evt) {
+        this.setState({email: evt.target.value});
     }
 
     handleSubmit(evt) {
         evt.preventDefault();
         if (this.validator.allValid()) {
-            this.props.handleSubmit(this.state);
+            this.props.handleSubmit(this.state, () => this.setState({username: '', email: ''}));
         } else {
             this.validator.showMessages();
             this.forceUpdate();
@@ -104,17 +97,14 @@ class LoginInput extends React.PureComponent {
                     </div>
 
                     <div className="login-password">
-                        <div>Password</div>
-                        <input type="password" className="login-input" value={this.state.password}
-                               onChange={this.handlePasswordChange.bind(this)}/>
-                        {this.validator.message('password', this.state.password, 'required')}
-                        <LinkWrapper to={`/forgot-password`}>
-                            <div className="login-forgot"><span className="login-forgot-text">Forgot Password?</span></div>
-                        </LinkWrapper>
+                        <div>Email</div>
+                        <input type="email" className="login-input" value={this.state.email}
+                               onChange={this.handleEmailChange.bind(this)}/>
+                        {this.validator.message('email', this.state.email, 'required|email')}
                     </div>
 
                     <div className="login-button-container">
-                        <Button className="login-button" label={"Log In"}/>
+                        <Button className="login-button" label={"Reset Password"}/>
                     </div>
                 </div>
             </form>
@@ -122,7 +112,7 @@ class LoginInput extends React.PureComponent {
     }
 }
 
-LoginInput.propTypes = {
+ForgotPasswordInput.propTypes = {
     handleSubmit: PropTypes.func.isRequired
 };
 
