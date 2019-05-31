@@ -10,7 +10,8 @@ import {Route} from "react-router";
 import {CompanyPage} from "./pages/company/CompanyPage";
 import LoginPage from "./pages/login/LoginPage";
 import RegisterPage from "./pages/register/RegisterPage";
-import ForgotPasswordPage from "./pages/forgot/ForgotPasswordPage";
+import ForgotPasswordPage from "./pages/forgot_password/ForgotPasswordPage";
+import ResetPasswordPage from "./pages/reset_password/ResetPasswordPage";
 import {Provider} from "react-redux";
 import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
@@ -35,6 +36,7 @@ ReactDOM.render(
                 <Route exact path="/login" render={(props) => <LoginPage/>}/>
                 <Route exact path="/register" render={(props) => <RegisterPage/>}/>
                 <Route exact path="/forgot-password" render={(props) => <ForgotPasswordPage/>}/>
+                <Route exact path="/reset-password/:token" render={(props) => <ResetPasswordPage token={props.match.params.token}/>}/>
                 <ToastContainer/>
             </HashRouter>
         </Provider>
