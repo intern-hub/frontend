@@ -3,15 +3,17 @@
 
 import {myFetch} from "../utils/MyFetch";
 
-export function updateIfExists(applicationId, applicationNotes) {
+export function updateIfExists(applicationId, update) {
     const token = window.localStorage.getItem("token");
     if (!token)
         return;
 
+    const body = JSON.stringify({
+        ...update
+    });
+
     return myFetch(`https://internhub.us.to/api/applications/${applicationId}`, {
-        body: JSON.stringify({
-            notes: applicationNotes
-        }),
+        body: body,
         headers: {
             'Authorization': 'Bearer ' + token,
             'Content-Type': 'application/json',
@@ -24,7 +26,7 @@ export function updateIfExists(applicationId, applicationNotes) {
         })
 }
 
-export function updateIfNotExists(positionId, applicationNotes) {
+export function updateIfNotExists(positionId, update) {
     const token = window.localStorage.getItem("token");
     if (!token)
         return;
@@ -34,7 +36,7 @@ export function updateIfNotExists(positionId, applicationNotes) {
             position: {
                 id: positionId
             },
-            notes: applicationNotes
+            ...update
         }),
         headers: {
             'Authorization': 'Bearer ' + token,

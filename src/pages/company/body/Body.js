@@ -109,9 +109,6 @@ export class Body extends React.PureComponent {
     }
 
     render() {
-        console.log("rerendering");
-        console.log(this.state.applications);
-
         let filteredInternships = this.state.internships;
         filteredInternships = filteredInternships.filter((internship) => this.state.location.value === "All" || internship.location === this.state.location.value);
         filteredInternships = filteredInternships.filter((internship) => this.state.title.value === "All" || internship.title === this.state.title.value);
@@ -129,7 +126,7 @@ export class Body extends React.PureComponent {
                 application={applyMap[internship.id]}
                 name={internship.title}
                 link={internship.link}
-                id={internship.id.toString()}
+                id={internship.id}
                 onApplicationUpdate={this.onApplicationUpdate.bind(this)}
             />);
 
@@ -165,7 +162,7 @@ export class Body extends React.PureComponent {
 
         if (internshipCards.length === 0) {
             internshipCards = [<InternshipCard key="unique" name={"No internships found!"} link="#" active={false}
-                                               id={"unique"}/>];
+                                               id={-1}/>];
             filterSelections = <div/>;
         }
 

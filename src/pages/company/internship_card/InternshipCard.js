@@ -30,25 +30,25 @@ export class InternshipCard extends React.PureComponent {
         super(props);
         this.state = {
             modalOpen: false,
-            applicationNotes: props.application.notes,
-
-            applicationCreatedOnServer: !Boolean(props.application.local),
             hasLoadedApplicationData: false,
+
+            application: {
+                applied: false,
+                broken: false,
+                created: false,
+                notes: ""
+            },
         }
     }
 
     componentWillUpdate(nextProps, nextState, nextContext) {
-        if(!this.state.hasLoadedApplicationData && this.applicationFromServer(nextProps.application)) {
-            this.setState({applicationNotes: nextProps.application.notes, hasLoadedApplicationData: true});
+        // if nextProps.application is undefined then hasn't gotten any info from the server
+        if (!this.state.hasLoadedApplicationData && nextProps.application) {
+            this.setState({
+                application: Object.assign({}, nextProps.application, {created: true}),
+                hasLoadedApplicationData: true
+            });
         }
-
-        if(!this.state.applicationCreatedOnServer && this.applicationFromServer(nextProps.application)) {
-            this.setState({applicationCreatedOnServer: true});
-        }
-    }
-
-    applicationFromServer(application) {
-        return !Boolean(application.local);
     }
 
     openModal() {
@@ -57,24 +57,40 @@ export class InternshipCard extends React.PureComponent {
 
     closeModal() {
         this.setState({modalOpen: false});
-        this.createOrUpdateApplicationNotes();
+        this.createOrUpdateOnServer({notes: this.state.application.notes});
     }
 
-    createOrUpdateApplicationNotes() {
-        if(this.state.applicationCreatedOnServer) {
-            updateIfExists(this.props.application.id, this.state.applicationNotes);
+    onApplyButtonClick(evt) {
+        evt.preventDefault();
+        let newApplied = !this.state.application.applied;
+        this.setState({application: Object.assign({}, this.state.application, {applied: newApplied})});
+        this.createOrUpdateOnServer({applied: newApplied});
+    }
+
+    onFlagButtonClick(evt) {
+        evt.preventDefault();
+        let newBroken = !this.state.application.broken;
+        this.setState({application: Object.assign({}, this.state.application, {broken: newBroken})});
+        this.createOrUpdateOnServer({broken: newBroken});
+    }
+
+    createOrUpdateOnServer(update) {
+        if (this.state.application.created) {
+            updateIfExists(this.props.application.id, update);
         } else {
-            updateIfNotExists(this.props.id, this.state.applicationNotes).then((success) => {
-                if(success) {
-                    this.setState({applicationCreatedOnServer: true});
+            updateIfNotExists(this.props.id, update).then((success) => {
+                if (success) {
+                    this.setState({application: Object.assign({}, this.state.application, {created: true})});
                     this.props.onApplicationUpdate();
                 }
             });
         }
     }
 
-    onChangeApplicationNotes(e) {
-        this.setState({applicationNotes: e.target.value});
+    onChangeNotes(e) {
+        this.setState({
+            application: Object.assign({}, this.state.application, {notes: e.target.value})
+        });
     }
 
     render() {
@@ -88,8 +104,11 @@ export class InternshipCard extends React.PureComponent {
                     </ExternalLinkWrapper>
                     <div className="is-buttons">
                         <button onClick={this.openModal.bind(this)} className="is-button"><NotesIcon/></button>
-                        <button className="is-button"><AppliedIcon/></button>
-                        <button className="is-button"><BrokenIcon/></button>
+                        <button className="is-button" style={{fill: this.state.application.applied ? "green" : "black"}}
+                                onClick={this.onApplyButtonClick.bind(this)}><AppliedIcon/></button>
+                        <button className="is-button" style={{fill: this.state.application.broken ? "red" : "black"}}
+                                onClick={this.onFlagButtonClick.bind(this)}>
+                            <BrokenIcon/></button>
                     </div>
 
 
@@ -98,11 +117,11 @@ export class InternshipCard extends React.PureComponent {
                            onRequestClose={this.closeModal.bind(this)}>
                         <div className="app-note-modal">
                             <div> Application Notes</div>
-                            <textarea value={this.state.applicationNotes}
+                            <textarea value={this.state.application.notes}
                                       style={{border: "1px solid gray"}}
                                       cols={50}
                                       rows={20}
-                                      onChange={this.onChangeApplicationNotes.bind(this)}/>
+                                      onChange={this.onChangeNotes.bind(this)}/>
 
                             <div className="app-note-btns">
                                 <div/>
@@ -127,20 +146,14 @@ export class InternshipCard extends React.PureComponent {
 
 InternshipCard.propTypes = {
     name: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     link: PropTypes.string.isRequired,
     application: PropTypes.object,
     active: PropTypes.bool,
-    onApplicationUpdate: PropTypes.func.isRequired,
+    onApplicationUpdate: PropTypes.func,
 };
 
 InternshipCard.defaultProps = {
-    application: {
-        applied: false,
-        broken: false,
-        local: true,
-        notes: ""
-    },
     name: "No internships found",
     active: true,
 };
