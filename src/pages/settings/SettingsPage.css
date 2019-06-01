@@ -52,6 +52,10 @@
     color: white;
 }
 
+.settings-label {
+    font-family: "IBM Plex Sans", sans-serif;
+}
+
 .settings-input {
     border-radius: 8px;
     border: 1px solid #4D9697;
@@ -64,8 +68,10 @@
     margin-bottom: 1rem;
 }
 
-.settings-label {
+.settings-validator {
+    color: red;
     font-family: "IBM Plex Sans", sans-serif;
+    font-size: 14px;
 }
 
 .settings__subtitle {

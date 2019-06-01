@@ -38,13 +38,13 @@ class ForgotPasswordPage extends React.PureComponent {
 
     render() {
         return (
-            <div className="login-page">
-                <div className="login-container">
-                    <div className="login-header">
-                        <div className="login-header-text">
-                            Reset Password 
+            <div className="forgot-password-page">
+                <div className="forgot-password-container">
+                    <div className="forgot-password-header">
+                        <div className="forgot-password-header-text">
+                            Forgot Password
                         </div>
-                        <div className="login-logo">
+                        <div className="forgot-password-logo">
                             <InternHubLogo black={true}/>
                         </div>
                     </div>
@@ -89,23 +89,27 @@ class ForgotPasswordInput extends React.PureComponent {
     render() {
         return (
             <form onSubmit={this.handleSubmit.bind(this)}>
-                <div className="login-input-container">
-                    <div className="login-username">
-                        <div>Username</div>
-                        <input className="login-input" value={this.state.username}
+                <div className="forgot-password-input-container">
+                    <div className="forgot-password-username">
+                        <label className="forgot-password-label">Username</label><br/>
+                        <input className="forgot-password-input" value={this.state.username}
                                onChange={this.handleUserNameChange.bind(this)}/>
-                        {this.validator.message('username', this.state.username, 'required|alpha_num')}
+                        <span className="forgot-password-validator">
+                            {this.validator.message('username', this.state.username, 'required|alpha_num')}
+                        </span>
                     </div>
 
-                    <div className="login-password">
-                        <div>Email</div>
-                        <input type="email" className="login-input" value={this.state.email}
+                    <div className="forgot-password-password">
+                        <label className="forgot-password-label">Email</label><br/>
+                        <input type="email" className="forgot-password-input" value={this.state.email}
                                onChange={this.handleEmailChange.bind(this)}/>
-                        {this.validator.message('email', this.state.email, 'required|email')}
+                        <span className="forgot-password-validator">
+                            {this.validator.message('email', this.state.email, 'required|email')}
+                        </span>
                     </div>
 
-                    <div className="login-button-container">
-                        <Button className="login-button" label={"Reset Password"}/>
+                    <div className="forgot-password-button-container">
+                        <Button className="forgot-password-button" label={"Reset"}/>
                     </div>
                 </div>
             </form>

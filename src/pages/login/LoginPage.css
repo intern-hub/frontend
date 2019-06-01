@@ -24,7 +24,7 @@
 }
 
 .login-container {
-    font-family: Helvetica, sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .login-input-container {
@@ -51,12 +51,19 @@
     background-color: #60bCC2;
     color: white;
     width: 75%;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.login-label {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 15px;
 }
 
 .login-input {
     border-radius: 8px;
     border: 1px solid #4D9697;
-    height: 1.3rem;
+    height: 1.7rem;
+    font-size: 1rem;
 }
 
 .login-username {
@@ -69,7 +76,8 @@
 
 .login-forgot {
     color: gray;
-    font-size: 14px;
+    font-size: 12px;
+    font-family: "IBM Plex Sans", sans-serif;
 }
 
 .login-forgot-text {
@@ -78,4 +86,10 @@
 
 .login-forgot:hover {
     opacity: 0.5;
+}
+
+.login-validator {
+    color: red;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 14px;
 }

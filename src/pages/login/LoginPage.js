@@ -97,17 +97,21 @@ class LoginInput extends React.PureComponent {
             <form onSubmit={this.handleSubmit.bind(this)}>
                 <div className="login-input-container">
                     <div className="login-username">
-                        <div>Username</div>
+                        <label className="login-label">Username</label><br/>
                         <input className="login-input" value={this.state.username}
                                onChange={this.handleUserNameChange.bind(this)}/>
-                        {this.validator.message('username', this.state.username, 'required|alpha_num')}
+                        <span className="login-validator">
+                            {this.validator.message('username', this.state.username, 'required|alpha_num')}
+                        </span>
                     </div>
 
                     <div className="login-password">
-                        <div>Password</div>
+                        <label className="login-label">Password</label><br/>
                         <input type="password" className="login-input" value={this.state.password}
                                onChange={this.handlePasswordChange.bind(this)}/>
-                        {this.validator.message('password', this.state.password, 'required')}
+                        <span className="login-validator">
+                            {this.validator.message('password', this.state.password, 'required')}
+                        </span>
                         <LinkWrapper to={`/forgot-password`}>
                             <div className="login-forgot"><span className="login-forgot-text">Forgot Password?</span></div>
                         </LinkWrapper>

@@ -79,14 +79,18 @@ class SettingsPage extends React.PureComponent {
                       <label className="settings-label">Current Password</label><br/>
                       <input type="password" className="settings-input" value={this.state.oldPassword}
                                onChange={this.handleOldPasswordChange.bind(this)}/>
-                        {this.validator.message('oldPassword', this.state.oldPassword, 'required')}
+                        <span className="settings-validator">
+                            {this.validator.message('oldPassword', this.state.oldPassword, 'required')}
+                        </span>
                     </div>
 
                     <div className="settings-password">
                         <label className="settings-label">New Password</label><br/>
                         <input type="password" className="settings-input" value={this.state.newPassword}
                                onChange={this.handleNewPasswordChange.bind(this)}/>
-                        {this.validator.message('newPassword', this.state.newPassword, 'required')}
+                        <span className="settings-validator">
+                            {this.validator.message('newPassword', this.state.newPassword, 'required')}
+                        </span>
                     </div>
 
                     <div className="settings-button-container">

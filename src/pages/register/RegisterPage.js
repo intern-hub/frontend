@@ -83,24 +83,30 @@ class RegisterInput extends React.PureComponent {
             <form onSubmit={this.handleSubmit.bind(this)}>
                 <div className="register-input-container">
                     <div className="register-email">
-                        <div>Email</div>
+                        <label className="register-label">Email</label><br/>
                         <input value={this.state.email} className="register-input"
                                onChange={this.handleEmailChange.bind(this)}/>
-                        {this.validator.message('email', this.state.email, 'required|email')}
+                        <span className="register-validator">
+                            {this.validator.message('email', this.state.email, 'required|email')}
+                        </span>
                     </div>
 
                     <div className="register-username">
-                        <div>Username</div>
+                        <label className="register-label">Username</label><br/>
                         <input value={this.state.username} className="register-input"
                                onChange={this.handleUserNameChange.bind(this)}/>
-                        {this.validator.message('username', this.state.username, 'required|alpha_num')}
+                        <span className="register-validator">
+                            {this.validator.message('username', this.state.username, 'required|alpha_num')}
+                        </span>
                     </div>
 
                     <div className="register-password">
-                        <div>Password</div>
+                        <label className="register-label">Password</label><br/>
                         <input value={this.state.password} type="password" className="register-input"
                                onChange={this.handlePasswordChange.bind(this)}/>
-                        {this.validator.message('password', this.state.password, 'required|alpha_num')}
+                        <span className="register-validator">
+                            {this.validator.message('password', this.state.password, 'required|alpha_num')}
+                        </span>
                     </div>
 
                     <div className="register-button-container">

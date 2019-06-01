@@ -24,7 +24,7 @@
 }
 
 .register-container {
-    font-family: Helvetica, sans-serif;
+    font-family: "IBM Plex Sans", sans-serif;
 }
 
 .register-input-container {
@@ -51,15 +51,27 @@
     background-color: #60bCC2;
     color: white;
     width: 75%;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.register-label {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 15px;
 }
 
 .register-input {
     border-radius: 8px;
     border: 1px solid #4D9697;
-    height: 1.3rem;
+    height: 1.7rem;
+    font-size: 1rem;
 }
 
 .register-email, .register-username, .register-password {
     margin-bottom: 1rem;
 }
 
+.register-validator {
+    color: red;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 14px;
+}
