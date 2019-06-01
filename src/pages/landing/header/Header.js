@@ -20,10 +20,9 @@ class Header extends React.PureComponent {
         return (
             this.props.isAuthenticated ? (
                 <React.Fragment>
-                    <div className="header-name"> Hello {this.props.username} </div>
                     <Button className="header__register" label={"Log Out"} onClick={this.logout.bind(this)}/>
                     <LinkWrapper to={`/settings`}>
-                      <Button className="header__settings" label={""} children={<SettingsIcon className="header__icon"/>}/>
+                        <Button className="header__settings" label={'Settings '} children={<SettingsIcon className="header__icon"/>}/>
                     </LinkWrapper>
                 </React.Fragment>
             ) : (
