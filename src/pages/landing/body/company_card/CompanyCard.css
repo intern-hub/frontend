@@ -14,12 +14,11 @@
     justify-content: space-between;
 
     /* transition */
-    transition:all 0.2s ease-in;
+    transition: all 0.4s ease-in;
 }
 
 .company-wrapper:hover {
-    background: linear-gradient(to right, #64BEB6, white);
-    color: white;
+    background: linear-gradient(to right, #64BEB6, #CCEDED, white);
 }
 
 .company-name {

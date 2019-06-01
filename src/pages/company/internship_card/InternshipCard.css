@@ -10,6 +10,12 @@
 
     display: flex;
     justify-content: space-between;
+
+    transition: all .4s ease-in;
+}
+
+.is-wrapper:hover {
+    background: linear-gradient(to right, #64BEB6, #CCEDED, white);
 }
 
 .is-name {
@@ -43,8 +49,7 @@
 
 .is-button {
     cursor: pointer;
-
-    background-color: white;
+    background-color: transparent;
     color: white;
     border: none;
 }
