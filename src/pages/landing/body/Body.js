@@ -22,7 +22,7 @@ export class Body extends React.Component {
             searchValue: '',
 
             sortTypes: sortTypes,
-            sortType:  sortTypes[0],
+            sortType: sortTypes[0],
         };
     }
 
@@ -32,23 +32,21 @@ export class Body extends React.Component {
                 return response.json();
             })
             .then((json) => {
-                this.setState({companies: json, filteredCompanies: json})
+                this.setState({companies: json, filteredCompanies: json});
+
+                let lastClickedCompany = window.localStorage.getItem("last-clicked-company");
+                if (!lastClickedCompany)
+                    return;
+
+                let lastClickedCompanyEl = document.getElementById(lastClickedCompany);
+                if (lastClickedCompanyEl) {
+                    lastClickedCompanyEl.scrollIntoView();
+                }
             });
-
-        let lastClickedCompany = window.localStorage.getItem("last-clicked-company");
-        if (!lastClickedCompany)
-            return;
-
-        setTimeout(() => {
-            let lastClickedCompanyEl = document.getElementById(lastClickedCompany);
-            if (lastClickedCompanyEl) {
-                lastClickedCompanyEl.scrollIntoView();
-            }
-        }, 1000);
     }
 
     handleSortType(evt) {
-      this.setState({sortType: {label: evt.label, value: evt.value}});
+        this.setState({sortType: {label: evt.label, value: evt.value}});
     }
 
     onCompanySearch(eventObj) {
@@ -63,10 +61,11 @@ export class Body extends React.Component {
     }
 
     render() {
-        const companyList = this.state.filteredCompanies.sort(this.state.sortType.value).map(companyObj => <CompanyCard key={companyObj.id}
-                                                                                        id={companyObj.id}
-                                                                                        name={companyObj.name}
-                                                                                        popularity={companyObj.popularity}/>);
+        const companyList = this.state.filteredCompanies.sort(this.state.sortType.value).map(companyObj => <CompanyCard
+            key={companyObj.id}
+            id={companyObj.id}
+            name={companyObj.name}
+            popularity={companyObj.popularity}/>);
 
         return (
             <div className="body">
