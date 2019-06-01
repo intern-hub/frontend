@@ -6,7 +6,7 @@ import {myFetch} from "../utils/MyFetch";
 export function updateIfExists(applicationId, update) {
     const token = window.localStorage.getItem("token");
     if (!token)
-        return;
+        return Promise.resolve(false);
 
     const body = JSON.stringify({
         ...update
@@ -29,7 +29,7 @@ export function updateIfExists(applicationId, update) {
 export function updateIfNotExists(positionId, update) {
     const token = window.localStorage.getItem("token");
     if (!token)
-        return;
+        return Promise.resolve(false);
 
     return myFetch(`https://internhub.us.to/api/applications/`, {
         body: JSON.stringify({

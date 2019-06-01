@@ -12,12 +12,13 @@ import LoginPage from "./pages/login/LoginPage";
 import RegisterPage from "./pages/register/RegisterPage";
 import ForgotPasswordPage from "./pages/forgot_password/ForgotPasswordPage";
 import ResetPasswordPage from "./pages/reset_password/ResetPasswordPage";
-import {Provider} from "react-redux";
-import {createStore, applyMiddleware} from 'redux';
+import {connect, Provider} from "react-redux";
+import {createStore, applyMiddleware, bindActionCreators} from 'redux';
 import thunk from 'redux-thunk';
 import reducers from "./reducers";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import {fetchUserData} from "./actions/Account";
 
 function configureStore(initialState = {}) {
     return createStore(
@@ -27,21 +28,43 @@ function configureStore(initialState = {}) {
     );
 }
 
+class App extends React.PureComponent {
+
+    componentDidMount() {
+        this.props.fetchUserData();
+    }
+
+    render() {
+        return (
+            <React.Fragment>
+                <HashRouter basename={"/frontend"}>
+                    <Route exact path="/" component={LandingPage}/>
+                    <Route path="/company/:name" render={(props) => <CompanyPage name={props.match.params.name}/>}/>
+                    <Route exact path="/login" render={(props) => <LoginPage/>}/>
+                    <Route exact path="/register" render={(props) => <RegisterPage/>}/>
+                    <Route exact path="/forgot-password" render={(props) => <ForgotPasswordPage/>}/>
+                    <Route exact path="/reset-password/:token"
+                           render={(props) => <ResetPasswordPage token={props.match.params.token}/>}/>
+                    <ToastContainer/>
+                </HashRouter>
+            </React.Fragment>
+        );
+    }
+}
+
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        fetchUserData: fetchUserData,
+    }, dispatch);
+}
+
+const ConnectedApp = connect(null, mapDispatchToProps)(App);
+
 ReactDOM.render(
-    <React.Fragment>
-        <Provider store={configureStore()}>
-            <HashRouter basename={"/frontend"}>
-                <Route exact path="/" component={LandingPage}/>
-                <Route path="/company/:name" render={(props) => <CompanyPage name={props.match.params.name}/>}/>
-                <Route exact path="/login" render={(props) => <LoginPage/>}/>
-                <Route exact path="/register" render={(props) => <RegisterPage/>}/>
-                <Route exact path="/forgot-password" render={(props) => <ForgotPasswordPage/>}/>
-                <Route exact path="/reset-password/:token" render={(props) => <ResetPasswordPage token={props.match.params.token}/>}/>
-                <ToastContainer/>
-            </HashRouter>
-        </Provider>
-    </React.Fragment>
-    , document.getElementById('root'));
+    <Provider store={configureStore()}>
+        <ConnectedApp/>
+    </Provider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

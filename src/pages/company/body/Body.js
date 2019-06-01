@@ -87,7 +87,6 @@ export class Body extends React.PureComponent {
     // called when new application notes are written or new info is set per application
     onApplicationUpdate() {
         getAllApplications(this.props.name).then((applications) => {
-            console.log("setting state");
             this.setState({applications: applications});
         });
     }
