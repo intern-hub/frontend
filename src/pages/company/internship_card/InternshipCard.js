@@ -30,14 +30,25 @@ export class InternshipCard extends React.PureComponent {
         super(props);
         this.state = {
             modalOpen: false,
-            applicationNotes: '',
+            applicationNotes: props.application.notes,
+
+            applicationCreatedOnServer: !Boolean(props.application.local),
+            hasLoadedApplicationData: false,
         }
     }
 
     componentWillUpdate(nextProps, nextState, nextContext) {
-        if(this.state.applicationNotes.length === 0 && nextProps.application) {
-            this.setState({applicationNotes: nextProps.application.notes});
+        if(!this.state.hasLoadedApplicationData && this.applicationFromServer(nextProps.application)) {
+            this.setState({applicationNotes: nextProps.application.notes, hasLoadedApplicationData: true});
         }
+
+        if(!this.state.applicationCreatedOnServer && this.applicationFromServer(nextProps.application)) {
+            this.setState({applicationCreatedOnServer: true});
+        }
+    }
+
+    applicationFromServer(application) {
+        return !Boolean(application.local);
     }
 
     openModal() {
@@ -50,13 +61,16 @@ export class InternshipCard extends React.PureComponent {
     }
 
     createOrUpdateApplicationNotes() {
-        if(this.props.application) {
+        if(this.state.applicationCreatedOnServer) {
             updateIfExists(this.props.application.id, this.state.applicationNotes);
         } else {
-            console.log("Posting");
-            updateIfNotExists(this.props.id, this.state.applicationNotes);
+            updateIfNotExists(this.props.id, this.state.applicationNotes).then((success) => {
+                if(success) {
+                    this.setState({applicationCreatedOnServer: true});
+                    this.props.onApplicationUpdate();
+                }
+            });
         }
-        this.props.onApplicationUpdate();
     }
 
     onChangeApplicationNotes(e) {
@@ -121,6 +135,12 @@ InternshipCard.propTypes = {
 };
 
 InternshipCard.defaultProps = {
+    application: {
+        applied: false,
+        broken: false,
+        local: true,
+        notes: ""
+    },
     name: "No internships found",
     active: true,
 };

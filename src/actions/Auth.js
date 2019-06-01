@@ -8,7 +8,7 @@ export function updateIfExists(applicationId, applicationNotes) {
     if (!token)
         return;
 
-    myFetch(`https://internhub.us.to/api/applications/${applicationId}`, {
+    return myFetch(`https://internhub.us.to/api/applications/${applicationId}`, {
         body: JSON.stringify({
             notes: applicationNotes
         }),
@@ -17,9 +17,11 @@ export function updateIfExists(applicationId, applicationNotes) {
             'Content-Type': 'application/json',
         },
         method: 'PUT',
-    }).catch(err => {
-        console.error("Could not update application notes");
-    })
+    }).then(response => Promise.resolve(true))
+        .catch(err => {
+            console.error("Could not update application notes");
+            return Promise.resolve(false);
+        })
 }
 
 export function updateIfNotExists(positionId, applicationNotes) {
@@ -27,7 +29,7 @@ export function updateIfNotExists(positionId, applicationNotes) {
     if (!token)
         return;
 
-    myFetch(`https://internhub.us.to/api/applications/`, {
+    return myFetch(`https://internhub.us.to/api/applications/`, {
         body: JSON.stringify({
             position: {
                 id: positionId
@@ -39,9 +41,11 @@ export function updateIfNotExists(positionId, applicationNotes) {
             'Content-Type': 'application/json',
         },
         method: 'POST',
-    }).catch(err => {
-        console.error("Could not create application");
-    })
+    }).then(response => Promise.resolve(true))
+        .catch(err => {
+            console.error("Could not create application");
+            return Promise.resolve(false);
+        })
 }
 
 export function getAllApplications(companyName) {
