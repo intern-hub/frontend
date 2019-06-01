@@ -5,6 +5,10 @@ import {CompanyCard} from "./company_card/CompanyCard";
 import Select from 'react-select';
 
 import {ReactComponent as SortIcon} from "../../../img/heroicons/icon-trending-up.svg"
+import {cancellableFetch} from "../../../utils/MyFetch";
+
+
+let fetchData;
 
 export class Body extends React.Component {
 
@@ -27,10 +31,10 @@ export class Body extends React.Component {
     }
 
     componentDidMount() {
-        fetch("https://internhub.us.to/api/companies")
-            .then((response) => {
-                return response.json();
-            })
+        fetchData = cancellableFetch(fetch("https://internhub.us.to/api/companies"));
+        fetchData.promise.then((response) => {
+            return response.json();
+        })
             .then((json) => {
                 this.setState({companies: json, filteredCompanies: json});
 
@@ -46,6 +50,10 @@ export class Body extends React.Component {
                 }
                 */
             });
+    }
+
+    componentWillUnmount() {
+        fetchData.cancel();
     }
 
     handleSortType(evt) {

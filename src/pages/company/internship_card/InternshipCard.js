@@ -36,17 +36,22 @@ export class InternshipCard extends React.PureComponent {
                 applied: false,
                 broken: false,
                 created: false,
-                notes: ""
+                notes: "",
             },
+        };
+
+        if (props.application) {
+            this.state.application = Object.assign({}, props.application, {created: true});
         }
     }
 
     componentWillUpdate(nextProps, nextState, nextContext) {
-        // if nextProps.application is undefined then hasn't gotten any info from the server
-        if (!this.state.hasLoadedApplicationData && nextProps.application) {
+        // keep props synchronized with state - Yes I know this is an antipattern, but we need it
+        // to keep notes synchronized - this component cannot be controlled and if we already have
+        // to do get requests continuously to get new application ids, why not just keep state nad props synchronized
+        if (JSON.stringify(this.props.application) !== JSON.stringify(nextProps.application)) {
             this.setState({
                 application: Object.assign({}, nextProps.application, {created: true}),
-                hasLoadedApplicationData: true
             });
         }
     }
@@ -76,11 +81,17 @@ export class InternshipCard extends React.PureComponent {
 
     createOrUpdateOnServer(update) {
         if (this.state.application.created) {
+            if(!this.props.application) {
+                console.error("User has created an application client side but somehow that did not get created server side, exting.");
+                return;
+            }
             updateIfExists(this.props.application.id, update);
         } else {
             updateIfNotExists(this.props.id, update).then((success) => {
                 if (success) {
                     this.setState({application: Object.assign({}, this.state.application, {created: true})});
+                    // need this so that whenever we have an application that already exists, we can use
+                    // the application id above
                     this.props.onApplicationUpdate();
                 }
             });
