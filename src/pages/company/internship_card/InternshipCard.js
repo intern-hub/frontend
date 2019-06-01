@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import ExternalLinkWrapper from "../../../utils/button/ExternalLinkWrapper";
 
 import {ReactComponent as NotesIcon} from "../../../img/heroicons/icon-edit.svg"
-import {ReactComponent as AppliedIcon} from "../../../img/heroicons/icon-star.svg"
+import {ReactComponent as AppliedIcon} from "../../../img/heroicons/icon-check-circle.svg"
 import {ReactComponent as BrokenIcon} from "../../../img/heroicons/icon-flag.svg"
 import Modal from 'react-modal';
 import {Button} from "../../../utils/button/Button";
