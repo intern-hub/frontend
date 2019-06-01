@@ -1,27 +1,31 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "406ec3047f570956523a6571f2f739c2",
+    "revision": "bd716c4df9b16e01bc64da2bf7fc960c",
     "url": "/frontend/index.html"
   },
   {
-    "revision": "b816b39b4a48e2e219ab",
+    "revision": "26d1d2c7f5fc1c33b28c",
     "url": "/frontend/static/css/2.39017165.chunk.css"
   },
   {
-    "revision": "19e1a12e24e547dedbb9",
-    "url": "/frontend/static/css/main.7fe8114c.chunk.css"
+    "revision": "8e1028026e2ba55ab93f",
+    "url": "/frontend/static/css/main.80928e8f.chunk.css"
   },
   {
-    "revision": "b816b39b4a48e2e219ab",
-    "url": "/frontend/static/js/2.c27413b0.chunk.js"
+    "revision": "26d1d2c7f5fc1c33b28c",
+    "url": "/frontend/static/js/2.c496ed96.chunk.js"
   },
   {
-    "revision": "19e1a12e24e547dedbb9",
-    "url": "/frontend/static/js/main.6977d412.chunk.js"
+    "revision": "8e1028026e2ba55ab93f",
+    "url": "/frontend/static/js/main.cbafd00d.chunk.js"
   },
   {
     "revision": "dbd924a9862891b98c97",
     "url": "/frontend/static/js/runtime~main.f332d61a.js"
+  },
+  {
+    "revision": "48cf506f83c053da01f2ef7125043efd",
+    "url": "/frontend/static/media/icon-cog.48cf506f.svg"
   },
   {
     "revision": "040ad82553f22c7d77c903c7bbc4ef9d",
