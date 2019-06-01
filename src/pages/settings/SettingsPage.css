@@ -1,0 +1,76 @@
+
+.settings-page {
+    background-color: #F3F3F3;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.settings-header {
+    font-size: 2rem;
+    font-weight: 100;
+    text-align: center;
+    color: #434243;
+}
+
+.settings-header-text {
+    margin-bottom: .5rem;
+}
+
+.settings-logo {
+    text-align: center;
+}
+
+.settings-container {
+    font-family: "IBM Plex Sans", sans-serif;
+}
+
+.settings-input-container {
+    display: flex;
+    flex-direction: column;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 2px 0;
+    border: 1px solid #C9C9C9;
+
+    font-weight: 700;
+
+    background-color: white;
+    padding: 1rem;
+}
+
+.settings-button-container {
+    text-align: center;
+    width: 100%;
+}
+
+.settings-button {
+    background-color: #60bCC2;
+    color: white;
+}
+
+.settings-input {
+    border-radius: 8px;
+    border: 1px solid #4D9697;
+    height: 1.7rem;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.settings-password {
+    margin-bottom: 1rem;
+}
+
+.settings-label {
+    font-family: "IBM Plex Sans", sans-serif;
+}
+
+.settings__subtitle {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin: 1rem 0;
+}

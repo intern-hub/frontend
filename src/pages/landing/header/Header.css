@@ -43,4 +43,16 @@
     margin-right: 1rem;
 }
 
+.header__settings {
+    background-color: #60BCC2;
+    color: white;
+    margin-right: 1rem;
+}
 
+.header__icon {
+    fill: white;
+    width: 18px;
+    height: 18px;
+    position: relative;
+    top: 3px;
+}
