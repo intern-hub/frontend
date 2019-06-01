@@ -1,7 +1,12 @@
 export function myFetch(url, args) {
     return fetch(url, args).then((response) => {
         if (!response.ok) {
-            throw new Error(response.status);
+            const status = `${response.status}`;
+            return response.text().then((text) => {
+                if (!text)
+                    throw new Error(status);
+                throw new Error(JSON.parse(text).error);
+            });
         }
 
         return response.text().then((text) => {
