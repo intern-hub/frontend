@@ -12,6 +12,14 @@
 
     display: flex;
     justify-content: space-between;
+
+    /* transition */
+    transition:all 0.2s ease-in;
+}
+
+.company-wrapper:hover {
+    background: linear-gradient(to right, #64BEB6, white);
+    color: white;
 }
 
 .company-name {
@@ -40,7 +48,7 @@
 }
 
 .company-popularity {
-    margin-top: -2px; 
+    margin-top: -2px;
 }
 
 .apply-link {
