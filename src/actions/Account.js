@@ -29,11 +29,9 @@ export function loginUser(username, password, history) {
             window.localStorage.setItem("token", response.token);
             history.push("/");
         }).catch(err => {
-            let failMsg = err;
-            if (err.message === "401")
-                failMsg = "Invalid username and password.";
-            else failMsg = "Unknown error, could not login.";
-
+            let failMsg = err.message;
+            if (err.message === "Bad credentials")
+                failMsg = "Invalid username or password";
             dispatch(loginFail(failMsg));
         })
     }
@@ -59,11 +57,8 @@ export function registerUser(email, username, password, history) {
         }).then(() => {
             dispatch(registerSuccess());
             dispatch(loginUser(username, password, history));
-        }).catch(e => {
-            let failMsg;
-            if (e.message === "409")
-                failMsg = "That username has already been taken.";
-            else failMsg = "Unknown error, could not sign up.";
+        }).catch(err => {
+            let failMsg = err.message;
             dispatch(registerFail(failMsg));
         })
     }
