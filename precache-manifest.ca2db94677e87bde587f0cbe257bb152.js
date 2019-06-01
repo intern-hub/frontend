@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "bd716c4df9b16e01bc64da2bf7fc960c",
+    "revision": "c87d78153fac48178824a81b4a837de7",
     "url": "/frontend/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/frontend/static/css/2.39017165.chunk.css"
   },
   {
-    "revision": "8e1028026e2ba55ab93f",
+    "revision": "8352f84521798fd52de1",
     "url": "/frontend/static/css/main.80928e8f.chunk.css"
   },
   {
@@ -16,12 +16,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/frontend/static/js/2.c496ed96.chunk.js"
   },
   {
-    "revision": "8e1028026e2ba55ab93f",
-    "url": "/frontend/static/js/main.cbafd00d.chunk.js"
+    "revision": "8352f84521798fd52de1",
+    "url": "/frontend/static/js/main.48c9988f.chunk.js"
   },
   {
     "revision": "dbd924a9862891b98c97",
     "url": "/frontend/static/js/runtime~main.f332d61a.js"
+  },
+  {
+    "revision": "35de839ef559736545e77c97e6d65afe",
+    "url": "/frontend/static/media/icon-check-circle.35de839e.svg"
   },
   {
     "revision": "48cf506f83c053da01f2ef7125043efd",
