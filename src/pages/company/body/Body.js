@@ -107,7 +107,7 @@ export class Body extends React.PureComponent {
         this.setState({date: {label: evt.label, value: evt.value}});
     }
 
-    render() {
+    getFilteredInternships() {
         let filteredInternships = this.state.internships;
         filteredInternships = filteredInternships.filter((internship) => this.state.location.value === "All" || internship.location === this.state.location.value);
         filteredInternships = filteredInternships.filter((internship) => this.state.title.value === "All" || internship.title === this.state.title.value);
@@ -115,8 +115,11 @@ export class Body extends React.PureComponent {
         filteredInternships = filteredInternships.filter((internship) => this.state.date.value === "All" ||
             (internship.season === this.state.date.value[0] && internship.year === this.state.date.value[1]));
 
-        filteredInternships = filteredInternships.sort((internshipCards) => internshipCards.title);
+        return filteredInternships.sort((internshipCards) => internshipCards.title);
+    }
 
+    render() {
+        const filteredInternships = this.getFilteredInternships();
         const applyMap = this.createApplyMap();
 
         let internshipCards = filteredInternships.map((internship) =>
@@ -162,7 +165,6 @@ export class Body extends React.PureComponent {
         if (internshipCards.length === 0) {
             internshipCards = [<InternshipCard key="unique" name={"No internships found!"} link="#" active={false}
                                                id={-1}/>];
-            filterSelections = <div/>;
         }
 
         return (
