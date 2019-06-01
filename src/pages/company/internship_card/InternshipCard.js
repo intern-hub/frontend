@@ -105,6 +105,7 @@ export class InternshipCard extends React.PureComponent {
     }
 
     render() {
+        const isAuthenticated = window.localStorage.getItem("token") != null;
         if (this.props.active) {
             return (
                 <div className="is-wrapper">
@@ -113,15 +114,14 @@ export class InternshipCard extends React.PureComponent {
                             {this.props.name}
                         </div>
                     </ExternalLinkWrapper>
-                    <div className="is-buttons">
+                    { isAuthenticated ? <div className="is-buttons">
                         <button onClick={this.openModal.bind(this)} className="is-button"><NotesIcon/></button>
                         <button className="is-button" style={{fill: this.state.application.applied ? "green" : "black"}}
                                 onClick={this.onApplyButtonClick.bind(this)}><AppliedIcon/></button>
                         <button className="is-button" style={{fill: this.state.application.broken ? "red" : "black"}}
                                 onClick={this.onFlagButtonClick.bind(this)}>
                             <BrokenIcon/></button>
-                    </div>
-
+                    </div> : null }
 
                     <Modal isOpen={this.state.modalOpen}
                            style={modalStyles}
