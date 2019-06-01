@@ -34,6 +34,8 @@ export class Body extends React.Component {
             .then((json) => {
                 this.setState({companies: json, filteredCompanies: json});
 
+                // TODO add back in when can figure out a way to make it smoother for the user
+                /*
                 let lastClickedCompany = window.localStorage.getItem("last-clicked-company");
                 if (!lastClickedCompany)
                     return;
@@ -42,6 +44,7 @@ export class Body extends React.Component {
                 if (lastClickedCompanyEl) {
                     lastClickedCompanyEl.scrollIntoView();
                 }
+                */
             });
     }
 
