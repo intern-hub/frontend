@@ -10,6 +10,7 @@ import {ReactComponent as BrokenIcon} from "../../../img/heroicons/icon-flag.svg
 import Modal from 'react-modal';
 import {Button} from "../../../utils/button/Button";
 import {updateIfExists, updateIfNotExists} from "../../../actions/Auth";
+import ReactTooltip from 'react-tooltip';
 
 Modal.setAppElement('#root');
 
@@ -115,12 +116,14 @@ export class InternshipCard extends React.PureComponent {
                         </div>
                     </ExternalLinkWrapper>
                     { isAuthenticated ? <div className="is-buttons">
-                        <button onClick={this.openModal.bind(this)} className="is-button"><NotesIcon/></button>
+                        <button onClick={this.openModal.bind(this)} className="is-button"
+                                data-tip="Add some notes about this application."><NotesIcon/></button>
                         <button className="is-button" style={{fill: this.state.application.applied ? "green" : "black"}}
-                                onClick={this.onApplyButtonClick.bind(this)}><AppliedIcon/></button>
+                                data-tip="Mark that you applied here." onClick={this.onApplyButtonClick.bind(this)}><AppliedIcon/></button>
                         <button className="is-button" style={{fill: this.state.application.broken ? "red" : "black"}}
-                                onClick={this.onFlagButtonClick.bind(this)}>
+                                data-tip="Flag the application as broken." onClick={this.onFlagButtonClick.bind(this)}>
                             <BrokenIcon/></button>
+                        <ReactTooltip/>
                     </div> : null }
 
                     <Modal isOpen={this.state.modalOpen}
