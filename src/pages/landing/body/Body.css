@@ -18,6 +18,28 @@
     color: #60bCC2;
 }
 
+.body__description {
+    font-family: 'IBM Plex Sans', sans-serif;
+    margin: 1rem 0;
+    padding: 0 0.5rem;
+}
+
+.body__description-title {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin: 1rem 0;
+}
+
+a {
+  text-decoration: none; 
+  color: #42a6ad;
+}
+
+a:hover {
+  opacity: 0.5;
+}
+
 .select__list {
     display: flex;
     flex-direction: column;
@@ -33,12 +55,14 @@
         align-items: stretch;
         width: 100%;
     }
+
+    .select__item__padding {
+        margin-right: 1rem;
+    }
 }
 
 .select__item {
     flex-grow: 1;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
 }
 
 .select__item-alone {

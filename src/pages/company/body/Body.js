@@ -17,6 +17,8 @@ export class Body extends React.PureComponent {
             degrees: [],
             dates: [],
 
+            company: {},
+
             location: {value: 'All', label: 'All'},
             degree: {value: 'All', label: 'All'},
             title: {value: 'All', label: 'All'},
@@ -72,13 +74,36 @@ export class Body extends React.PureComponent {
                     }
                 });
 
-                this.setState({
-                    internships: result,
-                    locations: locations,
-                    titles: titles,
-                    degrees: degrees,
-                    dates: dates
-                });
+                const self = this;
+
+                function callback(company) {
+                  self.setState({
+                      internships: result,
+                      locations: locations,
+                      titles: titles,
+                      degrees: degrees,
+                      dates: dates,
+                      company: company 
+                  });
+                }
+
+                if (result.length > 0) {
+                    callback(result[0].company);
+                }
+                else {
+                  fetch(`https://internhub.us.to/api/companies?coname=${this.props.name}`)
+                      .then((response) => {
+                          return response.json();
+                      })
+                      .then((companies) => {
+                          if (companies.length > 0) {
+                              callback(companies[0]);
+                          }
+                          else {
+                              callback(self.state.company);
+                          }
+                      });
+                }
             }).catch(() => {
             this.setState({internships: []});
         });
@@ -133,21 +158,21 @@ export class Body extends React.PureComponent {
             />);
 
         let filterSelections = <div className="select__list">
-            <div className="select__item">
+            <div className="select__item select__item__padding">
                 <span className="select__label">Filter by Location</span>
                 <Select value={this.state.location} onChange={this.handleLocation.bind(this)}
                         className="select__body"
                         options={this.state.locations}/>
             </div>
 
-            <div className="select__item">
+            <div className="select__item select__item__padding">
                 <span className="select__label">Filter by Title</span>
                 <Select value={this.state.title} onChange={this.handleTitle.bind(this)}
                         className="select__body"
                         options={this.state.titles}/>
             </div>
 
-            <div className="select__item">
+            <div className="select__item select__item__padding">
                 <span className="select__label">Filter by Degree</span>
                 <Select value={this.state.degree} onChange={this.handleDegree.bind(this)}
                         className="select__body"
@@ -168,14 +193,25 @@ export class Body extends React.PureComponent {
         }
 
         return (
-            <div className="body">
-                <div className="body__title">Internships <span className="body__subtitle">at {this.props.name}</span>
-                </div>
-                {filterSelections}
-                <div className="company-list">
-                    {internshipCards}
-                </div>
-            </div>
+          <div className="body">
+              <div className="body__title">
+                  Internships <span className="body__subtitle">at {this.props.name}</span>
+              </div>
+              <div className="body__description">
+                <span className="body__description-title">About the Company</span>
+                <br/>
+                {this.state.company.description}
+              </div>
+              <div className="body__description">
+                <span className="body__description-title">Careers Website</span>
+                <br/>
+                <a href={this.state.company.website}>{this.state.company.website}</a>
+              </div>
+              {filterSelections}
+              <div className="company-list">
+                  {internshipCards}
+              </div>
+          </div>
         )
     }
 }
