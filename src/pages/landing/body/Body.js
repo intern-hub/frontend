@@ -3,12 +3,27 @@ import {Search} from "./search/Search";
 import "./Body.css";
 import {CompanyCard} from "./company_card/CompanyCard";
 import Select from 'react-select';
+import {Button} from "../../../utils/button/Button";
 
 import {ReactComponent as SortIcon} from "../../../img/heroicons/icon-trending-up.svg"
-import {cancellableFetch} from "../../../utils/MyFetch";
+import {cancellableFetch, myFetch} from "../../../utils/MyFetch";
+import {toast} from "react-toastify";
+import Modal from 'react-modal';
 
+Modal.setAppElement('#root');
 
 let fetchData;
+
+const modalStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)'
+    }
+};
 
 export class Body extends React.Component {
 
@@ -24,6 +39,9 @@ export class Body extends React.Component {
             companies: [],
             filteredCompanies: [],
             searchValue: '',
+
+            suggestion: '',
+            modelOpen: false,
 
             sortTypes: sortTypes,
             sortType: sortTypes[0],
@@ -59,6 +77,38 @@ export class Body extends React.Component {
     handleSortType(evt) {
         this.setState({sortType: {label: evt.label, value: evt.value}});
     }
+  
+    openModal() {
+        this.setState({modalOpen: true});
+    }
+
+    closeModal() {
+        this.setState({modalOpen: false});
+    }
+
+    onChangeSuggestion(e) {
+        this.setState({suggestion: e.target.value});
+    }
+
+    onSubmitSuggestion(e) {
+        this.closeModal();
+        
+        const token = window.localStorage.getItem("token");
+        myFetch('https://internhub.us.to/api/suggestions', {
+            body: JSON.stringify({
+                content: this.state.suggestion
+            }),
+            headers: {
+              'Authorization': 'Bearer ' + token,
+              'Content-Type': 'application/json',
+            },
+            method: 'POST'
+        }).then(response => {
+            toast.success('Thank you for the suggestion! We will evaluate your request soon.');
+        }).catch(err => {
+            toast.error(err.message);
+        });
+    }
 
     onCompanySearch(eventObj) {
         let searchStr = eventObj.target.value;
@@ -72,6 +122,7 @@ export class Body extends React.Component {
     }
 
     render() {
+        const isAuthenticated = window.localStorage.getItem("token") != null;
         const companyList = this.state.filteredCompanies.sort(this.state.sortType.value).map(companyObj => <CompanyCard
             key={companyObj.id}
             id={companyObj.id}
@@ -102,6 +153,26 @@ export class Body extends React.Component {
                 <div className="company-list">
                     {companyList}
                 </div>
+
+                {isAuthenticated ? <div className="request-button-container">
+                    <Button className="request-button" label={"Are we missing a company? Request it here."} onClick={this.openModal.bind(this)}/>
+                </div> : null }
+                
+                <Modal isOpen={this.state.modalOpen}
+                    style={modalStyles}
+                    onRequestClose={this.closeModal.bind(this)}>
+                        <form onSubmit={this.onSubmitSuggestion.bind(this)}>
+                            <div className="modal__container">
+                                <div className="modal__title">Request a Company</div>
+                                <input type="text" className="search-input"
+                                    value={this.state.suggestion}
+                                    onChange={this.onChangeSuggestion.bind(this)}/>
+                                <div className="modal__buttons">
+                                    <Button label={"Submit"} className="modal__button-submit"/>
+                                </div>
+                            </div>
+                        </form>
+                </Modal>
             </div>
         )
     }
