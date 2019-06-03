@@ -157,8 +157,7 @@ export class Body extends React.Component {
                 </div>
 
                 {isAuthenticated ? <div className="request-button-container">
-                    <Button className="request-button" label={"Are we missing a company? Request it here."}
-                            onClick={this.openModal.bind(this)}/>
+                    <a className="request-button" onClick={this.openModal.bind(this)}>Are we missing a company? Request it here.</a>
                 </div> : null}
 
                 <Modal isOpen={this.state.modalOpen}
