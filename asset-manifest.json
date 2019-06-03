@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/frontend/static/css/main.37efe03c.chunk.css",
+    "main.css": "/frontend/static/css/main.4441eb3f.chunk.css",
     "main.js": "/frontend/static/js/main.8e5c4481.chunk.js",
     "main.js.map": "/frontend/static/js/main.8e5c4481.chunk.js.map",
     "runtime~main.js": "/frontend/static/js/runtime~main.f332d61a.js",
@@ -9,10 +9,10 @@
     "static/js/2.da57d9d0.chunk.js": "/frontend/static/js/2.da57d9d0.chunk.js",
     "static/js/2.da57d9d0.chunk.js.map": "/frontend/static/js/2.da57d9d0.chunk.js.map",
     "index.html": "/frontend/index.html",
-    "precache-manifest.4f1deed89a790980911cd9c517c9434f.js": "/frontend/precache-manifest.4f1deed89a790980911cd9c517c9434f.js",
+    "precache-manifest.d310d5f508fd77a9794c4179ff7ac7f8.js": "/frontend/precache-manifest.d310d5f508fd77a9794c4179ff7ac7f8.js",
     "service-worker.js": "/frontend/service-worker.js",
     "static/css/2.39017165.chunk.css.map": "/frontend/static/css/2.39017165.chunk.css.map",
-    "static/css/main.37efe03c.chunk.css.map": "/frontend/static/css/main.37efe03c.chunk.css.map",
+    "static/css/main.4441eb3f.chunk.css.map": "/frontend/static/css/main.4441eb3f.chunk.css.map",
     "static/media/icon-check-circle.35de839e.svg": "/frontend/static/media/icon-check-circle.35de839e.svg",
     "static/media/icon-edit.040ad825.svg": "/frontend/static/media/icon-edit.040ad825.svg",
     "static/media/icon-flag.46a1e004.svg": "/frontend/static/media/icon-flag.46a1e004.svg",
