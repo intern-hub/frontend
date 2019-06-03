@@ -164,7 +164,7 @@ export class Body extends React.Component {
                         <form onSubmit={this.onSubmitSuggestion.bind(this)}>
                             <div className="modal__container">
                                 <div className="modal__title">Request a Company</div>
-                                <input type="text" className="search-input"
+                                <input type="text" className="modal__input"
                                     value={this.state.suggestion}
                                     onChange={this.onChangeSuggestion.bind(this)}/>
                                 <div className="modal__buttons">

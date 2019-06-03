@@ -11,6 +11,7 @@ import Modal from 'react-modal';
 import {Button} from "../../../utils/button/Button";
 import {updateIfExists, updateIfNotExists} from "../../../actions/Auth";
 import ReactTooltip from 'react-tooltip';
+import {toast} from 'react-toastify';
 
 Modal.setAppElement('#root');
 
@@ -64,6 +65,11 @@ export class InternshipCard extends React.PureComponent {
     closeModal() {
         this.setState({modalOpen: false});
         this.createOrUpdateOnServer({notes: this.state.application.notes});
+    }
+
+    saveModal() {
+        this.createOrUpdateOnServer({notes: this.state.application.notes});
+        toast.success('Your notes have been saved.');
     }
 
     onApplyButtonClick(evt) {
@@ -130,17 +136,15 @@ export class InternshipCard extends React.PureComponent {
                            style={modalStyles}
                            onRequestClose={this.closeModal.bind(this)}>
                         <div className="app-note-modal">
-                            <div> Application Notes</div>
+                            <div className="modal__title">Your Notes</div>
                             <textarea value={this.state.application.notes}
-                                      style={{border: "1px solid gray"}}
-                                      cols={50}
-                                      rows={20}
+                                      className="modal__input"
+                                      cols={50} rows={20}
                                       onChange={this.onChangeNotes.bind(this)}/>
-
-                            <div className="app-note-btns">
-                                <div/>
-                                <Button onClick={this.closeModal.bind(this)} label={"Close"}/>
-                                <Button label={"Save"}/>
+                            <div className="modal__buttons">
+                              <Button label={"Save"} 
+                                  className="modal__button-submit" 
+                                  onClick={this.saveModal.bind(this)}/>
                             </div>
                         </div>
                     </Modal>
