@@ -205,7 +205,7 @@ export class Body extends React.PureComponent {
               <div className="body__description">
                 <span className="body__description-title">Careers Website</span>
                 <br/>
-                <a href={this.state.company.website}>{this.state.company.website}</a>
+                <a href={this.state.company.website} target="_blank" rel="noopener noreferrer">{this.state.company.website}</a>
               </div>
               {filterSelections}
               <div className="company-list">
