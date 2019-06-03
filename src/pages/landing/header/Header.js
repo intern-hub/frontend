@@ -25,7 +25,7 @@ class Header extends React.PureComponent {
                             <Button className="header__settings" label={this.props.username + ' ▼'}/>
                         </DropdownTrigger>
                         <DropdownContent>
-                            <ul className="account-dropdown__quick-links account-dropdown__segment">
+                            <ul className="account-dropdown__list">
                                 <li className="account-dropdown__link">
                                     <LinkWrapper to={`/`}><span>Home</span></LinkWrapper>
                                 </li>
@@ -33,7 +33,7 @@ class Header extends React.PureComponent {
                                     <LinkWrapper to={`/settings`}><span>Settings</span></LinkWrapper>
                                 </li>
                             </ul>
-                            <ul className="account-dropdown__quick-links account-dropdown__segment">
+                            <ul className="account-dropdown__list">
                                 <li className="account-dropdown__link">
                                     <span onClick={this.logout.bind(this)}>Log Out</span>
                                 </li>

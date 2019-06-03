@@ -83,19 +83,16 @@
     font-family: 'IBM Sans Plex', sans-serif;
 }
 
-.account-dropdown__quick-links {
+.account-dropdown__list {
     list-style-type: none;
     margin: 0;
     padding: 0;
-}
-
-.account-dropdown__segment {
     border-bottom: rgb( 225, 225, 225 ) 1px solid;
 }
 
 .account-dropdown__link {
     margin: 5px 0;
-    padding: 5px 20px;
+    padding: 10px 22px;
     cursor: pointer;
 }
 

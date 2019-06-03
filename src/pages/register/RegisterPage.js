@@ -96,7 +96,7 @@ class RegisterInput extends React.PureComponent {
                         <input value={this.state.username} className="register-input"
                                onChange={this.handleUserNameChange.bind(this)}/>
                         <span className="register-validator">
-                            {this.validator.message('username', this.state.username, 'required|alpha_num')}
+                            {this.validator.message('username', this.state.username, 'required|alpha_num|min:4')}
                         </span>
                     </div>
 
@@ -105,7 +105,7 @@ class RegisterInput extends React.PureComponent {
                         <input value={this.state.password} type="password" className="register-input"
                                onChange={this.handlePasswordChange.bind(this)}/>
                         <span className="register-validator">
-                            {this.validator.message('password', this.state.password, 'required|alpha_num')}
+                            {this.validator.message('password', this.state.password, 'required|alpha_num|min:6')}
                         </span>
                     </div>
 
