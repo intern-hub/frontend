@@ -2,12 +2,19 @@
 .s {
     display: grid;
     grid-template-columns: 1fr min-content;
+    position: relative;
 }
 
 .s__i {
-    margin: 0 1rem;
+    position: absolute;
+    left: 0;
+    margin: 0 .4rem;
     display: flex;
     align-self: center;
     justify-self: center;
+}
+
+.search-input.my-input {
+    padding-left: 2rem;
 }
 

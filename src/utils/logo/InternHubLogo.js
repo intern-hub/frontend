@@ -7,7 +7,7 @@ import LinkWrapper from "../button/LinkWrapper";
 const InternHubLogo = (props) => {
     return (
         <LinkWrapper to={"/"}>
-            <img src={props.black ? blackLogo : logo} alt="Logo" style={{height: "3rem", cursor: "pointer"}}/>
+            <img role="button" src={props.black ? blackLogo : logo} alt="Logo" style={{height: "3rem", cursor: "pointer"}}/>
         </LinkWrapper>
     );
 };

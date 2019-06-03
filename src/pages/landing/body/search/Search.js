@@ -11,7 +11,7 @@ export class Search extends React.PureComponent {
     render() {
         return (
             <div className="s">
-                <MyInput value={this.props.value} onChange={this.props.onChange}/>
+                <MyInput value={this.props.value} onChange={this.props.onChange} className="search-input"/>
                 <SearchIcon className="s__i"/>
             </div>
         )
