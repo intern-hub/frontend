@@ -81,7 +81,7 @@
     background: rgb( 255, 255, 255 );
     box-shadow: 0 5px 8px rgba( 0, 0, 0, 0.15 );
     font-family: 'IBM Sans Plex', sans-serif;
-    right: 15px;
+    right: 1rem;
 }
 
 .account-dropdown__list {
