@@ -7,7 +7,7 @@ import InternHubLogo from "../../../utils/logo/InternHubLogo";
 import {connect} from "react-redux";
 import {logoutUser} from "../../../actions/Account";
 import {withRouter} from "react-router";
-import {ReactComponent as SettingsIcon} from "../../../img/heroicons/icon-cog.svg";
+import Dropdown, {DropdownTrigger, DropdownContent} from 'react-simple-dropdown';
 
 class Header extends React.PureComponent {
 
@@ -20,10 +20,26 @@ class Header extends React.PureComponent {
         return (
             this.props.isAuthenticated ? (
                 <React.Fragment>
-                    <Button className="header__register" label={"Log Out"} onClick={this.logout.bind(this)}/>
-                    <LinkWrapper to={`/settings`}>
-                        <Button className="header__settings" label={'Settings '} children={<SettingsIcon className="header__icon"/>}/>
-                    </LinkWrapper>
+                    <Dropdown className="account-dropdown">
+                        <DropdownTrigger>
+                            <Button className="header__settings" label={this.props.username + ' ▼'}/>
+                        </DropdownTrigger>
+                        <DropdownContent>
+                            <ul className="account-dropdown__quick-links account-dropdown__segment">
+                                <li className="account-dropdown__link">
+                                    <LinkWrapper to={`/`}><span>Home</span></LinkWrapper>
+                                </li>
+                                <li className="account-dropdown__link">
+                                    <LinkWrapper to={`/settings`}><span>Settings</span></LinkWrapper>
+                                </li>
+                            </ul>
+                            <ul className="account-dropdown__quick-links account-dropdown__segment">
+                                <li className="account-dropdown__link">
+                                    <span onClick={this.logout.bind(this)}>Log Out</span>
+                                </li>
+                            </ul>
+                        </DropdownContent>
+                    </Dropdown> 
                 </React.Fragment>
             ) : (
                 <React.Fragment>
