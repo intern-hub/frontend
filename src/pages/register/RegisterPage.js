@@ -96,7 +96,7 @@ class RegisterInput extends React.PureComponent {
                         <input value={this.state.username} className="register-input"
                                onChange={this.handleUserNameChange.bind(this)}/>
                         <span className="register-validator">
-                            {this.validator.message('username', this.state.username, 'required|alpha_num|min:4')}
+                            {this.validator.message('username', this.state.username, 'required|alpha_num|min:3')}
                         </span>
                     </div>
 
