@@ -83,6 +83,7 @@
     box-shadow: 0 5px 8px rgba( 0, 0, 0, 0.15 );
     font-family: 'IBM Sans Plex', sans-serif;
     right: 1rem;
+    z-index: 900;
 }
 
 .account-dropdown__list {
