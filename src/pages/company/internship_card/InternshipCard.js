@@ -136,10 +136,10 @@ export class InternshipCard extends React.PureComponent {
                            style={modalStyles}
                            onRequestClose={this.closeModal.bind(this)}>
                         <div className="app-note-modal">
-                            <div className="modal__title">Your Notes</div>
+                          <div className="modal__title">Notes for <span className="body__subtitle">{this.props.name}</span></div>
                             <textarea value={this.state.application.notes}
                                       className="modal__input"
-                                      cols={50} rows={20}
+                                      cols={30} rows={10}
                                       onChange={this.onChangeNotes.bind(this)}/>
                             <div className="modal__buttons">
                               <Button label={"Save"} 
