@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/frontend/static/css/main.ab255c76.chunk.css",
-    "main.js": "/frontend/static/js/main.5850cc0c.chunk.js",
-    "main.js.map": "/frontend/static/js/main.5850cc0c.chunk.js.map",
+    "main.css": "/frontend/static/css/main.18b9d7df.chunk.css",
+    "main.js": "/frontend/static/js/main.3e2f94e8.chunk.js",
+    "main.js.map": "/frontend/static/js/main.3e2f94e8.chunk.js.map",
     "runtime~main.js": "/frontend/static/js/runtime~main.f332d61a.js",
     "runtime~main.js.map": "/frontend/static/js/runtime~main.f332d61a.js.map",
     "static/css/2.39017165.chunk.css": "/frontend/static/css/2.39017165.chunk.css",
-    "static/js/2.7b89b63f.chunk.js": "/frontend/static/js/2.7b89b63f.chunk.js",
-    "static/js/2.7b89b63f.chunk.js.map": "/frontend/static/js/2.7b89b63f.chunk.js.map",
+    "static/js/2.da57d9d0.chunk.js": "/frontend/static/js/2.da57d9d0.chunk.js",
+    "static/js/2.da57d9d0.chunk.js.map": "/frontend/static/js/2.da57d9d0.chunk.js.map",
     "index.html": "/frontend/index.html",
-    "precache-manifest.50450c7c98846a6808a34bf1a4b92c4e.js": "/frontend/precache-manifest.50450c7c98846a6808a34bf1a4b92c4e.js",
+    "precache-manifest.3ce4bb8214bf748fba87be00b5ad42c3.js": "/frontend/precache-manifest.3ce4bb8214bf748fba87be00b5ad42c3.js",
     "service-worker.js": "/frontend/service-worker.js",
     "static/css/2.39017165.chunk.css.map": "/frontend/static/css/2.39017165.chunk.css.map",
-    "static/css/main.ab255c76.chunk.css.map": "/frontend/static/css/main.ab255c76.chunk.css.map",
+    "static/css/main.18b9d7df.chunk.css.map": "/frontend/static/css/main.18b9d7df.chunk.css.map",
     "static/media/icon-check-circle.35de839e.svg": "/frontend/static/media/icon-check-circle.35de839e.svg",
     "static/media/icon-edit.040ad825.svg": "/frontend/static/media/icon-edit.040ad825.svg",
     "static/media/icon-flag.46a1e004.svg": "/frontend/static/media/icon-flag.46a1e004.svg",
-    "static/media/icon-star.d5bbc54c.svg": "/frontend/static/media/icon-star.d5bbc54c.svg",
     "static/media/icon-trending-up.82030891.svg": "/frontend/static/media/icon-trending-up.82030891.svg",
     "static/media/logo-black.png": "/frontend/static/media/logo-black.cc62f0cb.png",
-    "static/media/search.b1f9e4c3.svg": "/frontend/static/media/search.b1f9e4c3.svg"
+    "static/media/search.b1f9e4c3.svg": "/frontend/static/media/search.b1f9e4c3.svg",
+    "static/media/star.c2138895.svg": "/frontend/static/media/star.c2138895.svg"
   }
 }
