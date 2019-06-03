@@ -117,7 +117,7 @@ export class InternshipCard extends React.PureComponent {
             return (
                 <div className="is-wrapper">
                     <ExternalLinkWrapper to={this.props.link}>
-                        <div className="is-name">
+                        <div className="is-name" role="button">
                             {this.props.name}
                         </div>
                     </ExternalLinkWrapper>

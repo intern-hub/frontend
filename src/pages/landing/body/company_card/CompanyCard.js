@@ -15,7 +15,7 @@ export class CompanyCard extends React.PureComponent {
     render() {
         return (
             <LinkWrapper to={`/company/${this.props.name}`} >
-                <div id={this.props.name} className="company-wrapper" onClick={this.onClick.bind(this)}>
+                <div id={this.props.name} className="company-wrapper" onClick={this.onClick.bind(this)} role="button">
                     <div className="company-name">
                         {this.props.name}
                     </div>

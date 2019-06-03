@@ -9,6 +9,7 @@ import {ReactComponent as SortIcon} from "../../../img/heroicons/icon-trending-u
 import {cancellableFetch, myFetch} from "../../../utils/MyFetch";
 import {toast} from "react-toastify";
 import Modal from 'react-modal';
+import {MyInput} from "../../../utils/input/MyInput";
 
 Modal.setAppElement('#root');
 
@@ -77,7 +78,7 @@ export class Body extends React.Component {
     handleSortType(evt) {
         this.setState({sortType: {label: evt.label, value: evt.value}});
     }
-  
+
     openModal() {
         this.setState({modalOpen: true});
     }
@@ -92,15 +93,15 @@ export class Body extends React.Component {
 
     onSubmitSuggestion(e) {
         this.closeModal();
-        
+
         const token = window.localStorage.getItem("token");
         myFetch('https://internhub.us.to/api/suggestions', {
             body: JSON.stringify({
                 content: this.state.suggestion
             }),
             headers: {
-              'Authorization': 'Bearer ' + token,
-              'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json',
             },
             method: 'POST'
         }).then(response => {
@@ -155,23 +156,24 @@ export class Body extends React.Component {
                 </div>
 
                 {isAuthenticated ? <div className="request-button-container">
-                    <Button className="request-button" label={"Are we missing a company? Request it here."} onClick={this.openModal.bind(this)}/>
-                </div> : null }
-                
+                    <Button className="request-button" label={"Are we missing a company? Request it here."}
+                            onClick={this.openModal.bind(this)}/>
+                </div> : null}
+
                 <Modal isOpen={this.state.modalOpen}
-                    style={modalStyles}
-                    onRequestClose={this.closeModal.bind(this)}>
-                        <form onSubmit={this.onSubmitSuggestion.bind(this)}>
-                            <div className="modal__container">
-                                <div className="modal__title">Request a Company</div>
-                                <input type="text" className="modal__input"
-                                    value={this.state.suggestion}
-                                    onChange={this.onChangeSuggestion.bind(this)}/>
-                                <div className="modal__buttons">
-                                    <Button label={"Submit"} className="modal__button-submit"/>
-                                </div>
+                       style={modalStyles}
+                       onRequestClose={this.closeModal.bind(this)}>
+                    <form onSubmit={this.onSubmitSuggestion.bind(this)}>
+                        <div className="modal__container">
+                            <div className="modal__title">Request a Company</div>
+                            <MyInput type="text" className="modal__input"
+                                   value={this.state.suggestion}
+                                   onChange={this.onChangeSuggestion.bind(this)}/>
+                            <div className="modal__buttons">
+                                <Button label={"Submit"} className="modal__button-submit"/>
                             </div>
-                        </form>
+                        </div>
+                    </form>
                 </Modal>
             </div>
         )

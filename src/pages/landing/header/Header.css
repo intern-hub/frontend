@@ -76,6 +76,7 @@
 }
 
 .account-dropdown .dropdown__content {
+    border-radius: .3em;
     margin-top: 5px;
     border-top: rgba( 0, 0, 0, 0.05 ) 1px solid;
     background: rgb( 255, 255, 255 );
