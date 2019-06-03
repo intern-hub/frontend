@@ -7,13 +7,14 @@ import {withRouter} from "react-router";
 import SimpleReactValidator from 'simple-react-validator';
 
 import {Button} from "../../utils/button/Button";
+import {MyInput} from "../../utils/input/MyInput";
 
 class ResetPasswordPage extends React.PureComponent {
 
     constructor(props) {
         super(props);
         this.validator = new SimpleReactValidator();
-        this.state = { 
+        this.state = {
             password: ''
         };
     }
@@ -50,7 +51,7 @@ class ResetPasswordPage extends React.PureComponent {
           }
         });
     }
-  
+
     handlePasswordChange(evt) {
         this.setState({password: evt.target.value});
     }
@@ -62,7 +63,7 @@ class ResetPasswordPage extends React.PureComponent {
                   <h1 className="reset-title">Enter A New Password</h1><br/>
                   <form onSubmit={this.handleSubmit.bind(this)}>
                       <div className="reset-password">
-                        <input type="password" className="reset-input" value={this.state.password}
+                        <MyInput type="password" className="reset-input" value={this.state.password}
                                 onChange={this.handlePasswordChange.bind(this)}/>
                           {this.validator.message('password', this.state.password, 'required')}
                       </div>

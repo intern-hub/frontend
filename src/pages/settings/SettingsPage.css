@@ -36,12 +36,7 @@
 }
 
 .settings-input {
-    border-radius: 8px;
     border: 1px solid #4D9697;
-    height: 1.7rem;
-    font-size: 1rem;
-    /* Mobile-only: fixes issue with input extending off the screen */
-    width: 95%;
 }
 
 @media only screen and (min-width: 768px) {

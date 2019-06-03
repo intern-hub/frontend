@@ -88,7 +88,7 @@ export class InternshipCard extends React.PureComponent {
 
     createOrUpdateOnServer(update) {
         if (this.state.application.created) {
-            if(!this.props.application) {
+            if (!this.props.application) {
                 console.error("User has created an application client side but somehow that did not get created server side, exting.");
                 return;
             }
@@ -121,30 +121,35 @@ export class InternshipCard extends React.PureComponent {
                             {this.props.name}
                         </div>
                     </ExternalLinkWrapper>
-                    { isAuthenticated ? <div className="is-buttons">
+                    {isAuthenticated ? <div className="is-buttons">
                         <button onClick={this.openModal.bind(this)} className="is-button"
                                 data-tip="Add some notes about this application."><NotesIcon/></button>
                         <button className="is-button" style={{fill: this.state.application.applied ? "green" : "black"}}
-                                data-tip="Mark that you applied here." onClick={this.onApplyButtonClick.bind(this)}><AppliedIcon/></button>
+                                data-tip="Mark that you applied here." onClick={this.onApplyButtonClick.bind(this)}>
+                            <AppliedIcon/></button>
                         <button className="is-button" style={{fill: this.state.application.broken ? "red" : "black"}}
                                 data-tip="Flag the application as broken." onClick={this.onFlagButtonClick.bind(this)}>
                             <BrokenIcon/></button>
                         <ReactTooltip/>
-                    </div> : null }
+                    </div> : null}
 
                     <Modal isOpen={this.state.modalOpen}
                            style={modalStyles}
                            onRequestClose={this.closeModal.bind(this)}>
                         <div className="app-note-modal">
-                          <div className="modal__title">Notes for <span className="body__subtitle">{this.props.name}</span></div>
+                            <div className="modal__title">Notes for <span
+                                className="body__subtitle">{this.props.name}</span></div>
                             <textarea value={this.state.application.notes}
                                       className="modal__input"
                                       cols={30} rows={10}
                                       onChange={this.onChangeNotes.bind(this)}/>
                             <div className="modal__buttons">
-                              <Button label={"Save"} 
-                                  className="modal__button-submit" 
-                                  onClick={this.saveModal.bind(this)}/>
+                                <Button label={"Save"}
+                                        className="modal__button-submit"
+                                        onClick={this.saveModal.bind(this)}/>
+                                <Button label={"Close"}
+                                        className="modal__button-close"
+                                        onClick={this.closeModal.bind(this)}/>
                             </div>
                         </div>
                     </Modal>

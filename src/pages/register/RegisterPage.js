@@ -11,6 +11,7 @@ import {toast} from "react-toastify";
 import PropTypes from 'prop-types';
 import {registerUser, setRegisterFail} from "../../actions/Account";
 import {withRouter} from "react-router";
+import {MyInput} from "../../utils/input/MyInput";
 
 class RegisterPage extends React.PureComponent {
     componentWillUpdate(nextProps, nextState, nextContext) {
@@ -84,8 +85,10 @@ class RegisterInput extends React.PureComponent {
                 <div className="register-input-container">
                     <div className="register-email">
                         <label className="register-label">Email</label><br/>
-                        <input value={this.state.email} className="register-input"
+                        <MyInput value={this.state.email} className="register-input"
                                onChange={this.handleEmailChange.bind(this)}/>
+
+
                         <span className="register-validator">
                             {this.validator.message('email', this.state.email, 'required|email')}
                         </span>
@@ -93,7 +96,7 @@ class RegisterInput extends React.PureComponent {
 
                     <div className="register-username">
                         <label className="register-label">Username</label><br/>
-                        <input value={this.state.username} className="register-input"
+                        <MyInput value={this.state.username} className="register-input"
                                onChange={this.handleUserNameChange.bind(this)}/>
                         <span className="register-validator">
                             {this.validator.message('username', this.state.username, 'required|alpha_num|min:3')}
@@ -102,7 +105,7 @@ class RegisterInput extends React.PureComponent {
 
                     <div className="register-password">
                         <label className="register-label">Password</label><br/>
-                        <input value={this.state.password} type="password" className="register-input"
+                        <MyInput value={this.state.password} type="password" className="register-input"
                                onChange={this.handlePasswordChange.bind(this)}/>
                         <span className="register-validator">
                             {this.validator.message('password', this.state.password, 'required|alpha_num|min:6')}

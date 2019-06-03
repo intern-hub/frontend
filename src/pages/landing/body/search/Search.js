@@ -4,13 +4,14 @@ import {ReactComponent as SearchIcon} from "../../../../img/search.svg"
 import PropTypes from 'prop-types';
 
 import "./Search.css";
+import {MyInput} from "../../../../utils/input/MyInput";
 
 export class Search extends React.PureComponent {
 
     render() {
         return (
             <div className="s">
-                <input value={this.props.value} onChange={this.props.onChange} className="search-input"/>
+                <MyInput value={this.props.value} onChange={this.props.onChange}/>
                 <SearchIcon className="s__i"/>
             </div>
         )

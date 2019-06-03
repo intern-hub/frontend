@@ -9,6 +9,7 @@ import {withRouter} from "react-router";
 import SimpleReactValidator from 'simple-react-validator';
 
 import {toast} from "react-toastify";
+import {MyInput} from "../../utils/input/MyInput";
 
 
 class ForgotPasswordPage extends React.PureComponent {
@@ -92,7 +93,7 @@ class ForgotPasswordInput extends React.PureComponent {
                 <div className="forgot-password-input-container">
                     <div className="forgot-password-username">
                         <label className="forgot-password-label">Username</label><br/>
-                        <input className="forgot-password-input" value={this.state.username}
+                        <MyInput className="forgot-password-input" value={this.state.username}
                                onChange={this.handleUserNameChange.bind(this)}/>
                         <span className="forgot-password-validator">
                             {this.validator.message('username', this.state.username, 'required|alpha_num')}
@@ -101,7 +102,7 @@ class ForgotPasswordInput extends React.PureComponent {
 
                     <div className="forgot-password-password">
                         <label className="forgot-password-label">Email</label><br/>
-                        <input type="email" className="forgot-password-input" value={this.state.email}
+                        <MyInput type="email" className="forgot-password-input" value={this.state.email}
                                onChange={this.handleEmailChange.bind(this)}/>
                         <span className="forgot-password-validator">
                             {this.validator.message('email', this.state.email, 'required|email')}

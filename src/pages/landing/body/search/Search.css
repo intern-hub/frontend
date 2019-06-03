@@ -11,17 +11,3 @@
     justify-self: center;
 }
 
-.search-input {
-    width: 100%;
-    padding: 7px 10px;
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-weight: 300;
-    font-size: 16px;
-    border: 1px solid #aaa;
-    border-radius: 4px;
-
-    /* Include the border and the padding in the set width */
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}

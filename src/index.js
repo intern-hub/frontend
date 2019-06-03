@@ -21,6 +21,8 @@ import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import {fetchUserData} from "./actions/Account";
 
+const TOAST_DELAY = 2500;
+
 function configureStore(initialState = {}) {
     return createStore(
         reducers,
@@ -44,11 +46,11 @@ class App extends React.PureComponent {
                     <Route exact path="/login" render={(props) => <LoginPage/>}/>
                     <Route exact path="/register" render={(props) => <RegisterPage/>}/>
                     <Route exact path="/settings" render={(props) => <SettingsPage/>}/>
-                    <Route exact path="/forgot-password" 
+                    <Route exact path="/forgot-password"
                             render={(props) => <ForgotPasswordPage/>}/>
                     <Route exact path="/reset-password/:token"
                             render={(props) => <ResetPasswordPage token={props.match.params.token}/>}/>
-                    <ToastContainer/>
+                    <ToastContainer autoClose={TOAST_DELAY}/>
                 </HashRouter>
             </React.Fragment>
         );

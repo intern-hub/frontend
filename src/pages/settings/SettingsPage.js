@@ -9,10 +9,11 @@ import SimpleReactValidator from 'simple-react-validator';
 import {myFetch} from "../../utils/MyFetch";
 import {toast} from "react-toastify";
 
-import {withRouter} from "react-router"; 
+import {withRouter} from "react-router";
+import {MyInput} from "../../utils/input/MyInput";
 
 class SettingsPage extends React.PureComponent {
-    
+
     constructor(props) {
         super(props);
         this.validator = new SimpleReactValidator();
@@ -28,11 +29,11 @@ class SettingsPage extends React.PureComponent {
             this.props.history.push("/login");
         }
     }
-  
+
     handleOldPasswordChange(evt) {
         this.setState({oldPassword: evt.target.value});
     }
-  
+
     handleNewPasswordChange(evt) {
         this.setState({newPassword: evt.target.value});
     }
@@ -77,7 +78,7 @@ class SettingsPage extends React.PureComponent {
                     <div className="settings-subtitle">Change Password</div>
                     <div className="settings-password">
                       <label className="settings-label">Current Password</label><br/>
-                      <input type="password" className="settings-input" value={this.state.oldPassword}
+                      <MyInput type="password" className="settings-input" value={this.state.oldPassword}
                                onChange={this.handleOldPasswordChange.bind(this)}/>
                         <span className="settings-validator">
                             {this.validator.message('oldPassword', this.state.oldPassword, 'required')}
@@ -86,7 +87,7 @@ class SettingsPage extends React.PureComponent {
 
                     <div className="settings-password">
                         <label className="settings-label">New Password</label><br/>
-                        <input type="password" className="settings-input" value={this.state.newPassword}
+                        <MyInput type="password" className="settings-input" value={this.state.newPassword}
                                onChange={this.handleNewPasswordChange.bind(this)}/>
                         <span className="settings-validator">
                             {this.validator.message('newPassword', this.state.newPassword, 'required')}
@@ -98,8 +99,8 @@ class SettingsPage extends React.PureComponent {
                     </div>
                 </div>
             </form>
- 
-              </div>          
+
+              </div>
           </div>
         );
     }

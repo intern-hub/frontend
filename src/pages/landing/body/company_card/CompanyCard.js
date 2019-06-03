@@ -4,7 +4,7 @@ import "./CompanyCard.css";
 import PropTypes from 'prop-types';
 import LinkWrapper from "../../../../utils/button/LinkWrapper";
 
-import {ReactComponent as PopularityIcon} from "../../../../img/heroicons/icon-star.svg";
+import {ReactComponent as PopularityIcon} from "../../../../img/star.svg";
 
 export class CompanyCard extends React.PureComponent {
 
@@ -20,7 +20,7 @@ export class CompanyCard extends React.PureComponent {
                         {this.props.name}
                     </div>
                     <div className="company-info">
-                      <span className="company-popularity">{this.props.popularity}</span>&nbsp;<PopularityIcon/>
+                      <span className="company-popularity">{this.props.popularity}</span>&nbsp;<PopularityIcon width="26" height="26" style={{fill: "#61BCC1"}}/>
                     </div>
                 </div>
             </LinkWrapper>

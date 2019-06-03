@@ -60,10 +60,7 @@
 }
 
 .register-input {
-    border-radius: 8px;
     border: 1px solid #4D9697;
-    height: 1.7rem;
-    font-size: 1rem;
 }
 
 .register-email, .register-username, .register-password {

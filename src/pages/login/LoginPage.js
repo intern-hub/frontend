@@ -13,6 +13,7 @@ import {loginUser, setLoginFail} from "../../actions/Account";
 
 import {toast} from "react-toastify";
 import {withRouter} from "react-router";
+import {MyInput} from "../../utils/input/MyInput";
 
 
 class LoginPage extends React.PureComponent {
@@ -98,8 +99,7 @@ class LoginInput extends React.PureComponent {
                 <div className="login-input-container">
                     <div className="login-username">
                         <label className="login-label">Username</label><br/>
-                        <input className="login-input" value={this.state.username}
-                               onChange={this.handleUserNameChange.bind(this)}/>
+                        <MyInput className="login-input" value={this.state.username} onChange={this.handleUserNameChange.bind(this)}/>
                         <span className="login-validator">
                             {this.validator.message('username', this.state.username, 'required|alpha_num')}
                         </span>
@@ -107,7 +107,7 @@ class LoginInput extends React.PureComponent {
 
                     <div className="login-password">
                         <label className="login-label">Password</label><br/>
-                        <input type="password" className="login-input" value={this.state.password}
+                        <MyInput type="password" className="login-input" value={this.state.password}
                                onChange={this.handlePasswordChange.bind(this)}/>
                         <span className="login-validator">
                             {this.validator.message('password', this.state.password, 'required')}
