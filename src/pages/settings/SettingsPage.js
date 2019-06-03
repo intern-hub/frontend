@@ -74,7 +74,7 @@ class SettingsPage extends React.PureComponent {
                 <div className="body__title">Settings</div>
                 <form onSubmit={this.handleSubmit.bind(this)}>
                   <div className="settings-input-container">
-                    <div className="settings__subtitle">Change Password</div>
+                    <div className="settings-subtitle">Change Password</div>
                     <div className="settings-password">
                       <label className="settings-label">Current Password</label><br/>
                       <input type="password" className="settings-input" value={this.state.oldPassword}
