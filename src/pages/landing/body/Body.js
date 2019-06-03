@@ -106,6 +106,7 @@ export class Body extends React.Component {
             method: 'POST'
         }).then(response => {
             toast.success('Thank you for the suggestion! We will evaluate your request soon.');
+            this.setState({suggestion: ''});
         }).catch(err => {
             toast.error(err.message);
         });
@@ -171,6 +172,7 @@ export class Body extends React.Component {
                                    onChange={this.onChangeSuggestion.bind(this)}/>
                             <div className="modal__buttons">
                                 <Button label={"Submit"} className="modal__button-submit"/>
+                                <Button label={"Close"} className="modal__button-close" onClick={this.closeModal.bind(this)}/>
                             </div>
                         </div>
                     </form>

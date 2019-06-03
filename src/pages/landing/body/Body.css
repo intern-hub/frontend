@@ -146,6 +146,8 @@ a:hover {
     opacity: .8;
     color: white;
     height: 2rem;
+    width: 5rem;
+    margin-right: 0.5rem;
 }
 
 .modal__button-close {
@@ -153,4 +155,5 @@ a:hover {
     opacity: .8;
     color: white;
     height: 2rem;
+    width: 5rem;
 }
