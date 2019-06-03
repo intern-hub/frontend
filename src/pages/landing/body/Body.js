@@ -5,7 +5,6 @@ import {CompanyCard} from "./company_card/CompanyCard";
 import Select from 'react-select';
 import {Button} from "../../../utils/button/Button";
 
-import {ReactComponent as SortIcon} from "../../../img/heroicons/icon-trending-up.svg"
 import {cancellableFetch, myFetch} from "../../../utils/MyFetch";
 import {toast} from "react-toastify";
 import Modal from 'react-modal';
@@ -147,7 +146,6 @@ export class Body extends React.Component {
                             <Select value={this.state.sortType} onChange={this.handleSortType.bind(this)}
                                     className="select__body"
                                     options={this.state.sortTypes}/>
-                            <SortIcon className="select__sorting__icon"/>
                         </div>
                     </div>
                 </div>
