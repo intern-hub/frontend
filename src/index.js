@@ -13,6 +13,7 @@ import RegisterPage from "./pages/register/RegisterPage";
 import SettingsPage from "./pages/settings/SettingsPage";
 import ForgotPasswordPage from "./pages/forgot_password/ForgotPasswordPage";
 import ResetPasswordPage from "./pages/reset_password/ResetPasswordPage";
+import ApplicationsPage from "./pages/applications/ApplicationsPage";
 import {connect, Provider} from "react-redux";
 import {createStore, applyMiddleware, bindActionCreators} from 'redux';
 import thunk from 'redux-thunk';
@@ -46,6 +47,7 @@ class App extends React.PureComponent {
                     <Route exact path="/login" render={(props) => <LoginPage/>}/>
                     <Route exact path="/register" render={(props) => <RegisterPage/>}/>
                     <Route exact path="/settings" render={(props) => <SettingsPage/>}/>
+                    <Route exact path="/applications" render={(props) => <ApplicationsPage/>}/>
                     <Route exact path="/forgot-password"
                             render={(props) => <ForgotPasswordPage/>}/>
                     <Route exact path="/reset-password/:token"

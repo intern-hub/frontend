@@ -69,3 +69,22 @@ export function getAllApplications(companyName) {
     })
 }
 
+export function getTotalApplications() {
+    const token = window.localStorage.getItem("token");
+    if (!token)
+        return Promise.resolve([]);
+
+    return myFetch(`https://internhub.us.to/api/applications`, {
+        headers: new Headers({
+            'Authorization': 'Bearer ' + token,
+            'Content-Type': 'application/json',
+        }),
+        method: 'GET',
+    }).then(response => {
+        return response;
+    }).catch(err => {
+        console.error("Could not fetch all applications for the current user");
+        return [];
+    })
+}
+

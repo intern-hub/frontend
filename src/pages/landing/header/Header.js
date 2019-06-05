@@ -30,6 +30,9 @@ class Header extends React.PureComponent {
                                     <LinkWrapper to={`/`}><span>Home</span></LinkWrapper>
                                 </li>
                                 <li className="account-dropdown__link">
+                                    <LinkWrapper to={`/applications`}><span>History</span></LinkWrapper>
+                                </li>
+                                <li className="account-dropdown__link">
                                     <LinkWrapper to={`/settings`}><span>Settings</span></LinkWrapper>
                                 </li>
                             </ul>
